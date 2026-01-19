@@ -1,0 +1,7 @@
+<h2>{{ product.title }}</h2>
+<img src="{{ product.image }}" alt="{{ product.title }}" width="200">
+<p>{{ product.description }}</p>
+<p>Категорія: {{ product.category }}</p>
+<p>Ціна: {{ product.price }}</p>
+
+<a href="{% url 'product_list' %}">Назад до списку</a>

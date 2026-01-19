@@ -34,13 +34,22 @@ ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "").split(',')
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'catalog',
+    "unfold",  # before django.contrib.admin
+    "unfold.contrib.filters",  # optional, if special filters are needed
+    "unfold.contrib.forms",  # optional, if special form elements are needed
+    "unfold.contrib.inlines",  # optional, if special inlines are needed
+    "unfold.contrib.import_export",  # optional, if django-import-export package is used
+    "unfold.contrib.guardian",  # optional, if django-guardian package is used
+    "unfold.contrib.simple_history",  # optional, if django-simple-history package is used
+    "unfold.contrib.location_field",  # optional, if django-location-field package is used
+    "unfold.contrib.constance",  # optional, if django-constance package is used
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    "catalog",
 ]
 
 MIDDLEWARE = [
@@ -106,7 +115,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/6.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'uk-ua'
 
 TIME_ZONE = 'UTC'
 
@@ -114,8 +123,66 @@ USE_I18N = True
 
 USE_TZ = True
 
+USE_L10N = True
+LANGUAGES = [
+    ("uk", "Українська"),
+    ("en", "English"),
+]
+LOCALE_PATHS = [os.path.join(BASE_DIR, "locale")]
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
+
+from django.templatetags.static import static
+from django.urls import reverse_lazy
+from django.utils.translation import gettext_lazy as _
+
+UNFOLD = {
+    "SITE_TITLE": "Shop Сosiness",
+    "SITE_HEADER": "Сosiness Admin",
+    "SITE_URL": "/",
+    "SITE_SYMBOL": "shopping_cart",  # symbol from icon set
+    "SHOW_HISTORY": True,  # show/hide "History" button, default: True
+    "SHOW_VIEW_ON_SITE": True,  # show/hide "View on site" button, default: True
+    "SHOW_BACK_BUTTON": True,  # show/hide "Back" button on changeform in header, default: False
+    "THEME": "dark",  # Force theme: "dark" or "light". Will disable theme switcher
+    "BORDER_RADIUS": "6px",
+    "COLORS": {
+        "base": {
+            "50": "oklch(98% .008 270)",
+            "100": "oklch(95% .012 270)",
+            "200": "oklch(90% .018 270)",
+            "300": "oklch(85% .025 270)",
+            "400": "oklch(75% .030 270)",
+            "500": "oklch(65% .035 270)",
+            "600": "oklch(55% .038 270)",
+            "700": "oklch(45% .035 270)",
+            "800": "oklch(36% .030 270)",
+            "900": "oklch(26% .025 270)",
+            "950": "oklch(18% .020 270)",
+        },
+        "primary": {
+            "50": "oklch(97% .015 240)",
+            "100": "oklch(94% .030 240)",
+            "200": "oklch(90% .060 240)",
+            "300": "oklch(82% .110 240)",
+            "400": "oklch(72% .180 240)",
+            "500": "oklch(63% .240 240)",
+            "600": "oklch(55% .260 240)",
+            "700": "oklch(48% .230 240)",
+            "800": "oklch(42% .190 240)",
+            "900": "oklch(36% .150 240)",
+            "950": "oklch(28% .120 240)",
+        },
+        "font": {
+            "subtle-light": "var(--color-base-500)",  # text-base-500
+            "subtle-dark": "var(--color-base-400)",  # text-base-400
+            "default-light": "var(--color-base-600)",  # text-base-600
+            "default-dark": "var(--color-base-300)",  # text-base-300
+            "important-light": "var(--color-base-900)",  # text-base-900
+            "important-dark": "var(--color-base-100)",  # text-base-100
+        },
+    },
+}

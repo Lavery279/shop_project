@@ -1,0 +1,11 @@
+<h1>Список товарів</h1>
+<ul>
+    {% for product in products %}
+    <li>
+        <a href="{% url 'product_detail' product.pk %}">
+            <img src="{{ product.image }}" alt="{{ product.title }}" width="100">
+            {{ product.title }} — {{ product.price }}
+        </a>
+    </li>
+    {% endfor %}
+</ul>
