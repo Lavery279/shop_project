@@ -46,6 +46,17 @@ class Cart:
             self.cart[product_id]["quantity"] = quantity
             self.save()
 
+    def __len__(self):
+        return sum(item["quantity"] for item in self.cart.values())
+
+    def is_empty(self):
+        return len(self.cart) == 0
+
+    def get_total_price(self):
+        return sum(
+            float(item["price"]) * item["quantity"] for item in self.cart.values()
+        )
+
 
 def add_to_cart(request, product_id):
     cart = Cart(request)
@@ -56,7 +67,14 @@ def add_to_cart(request, product_id):
 
 def cart_detail(request):
     cart = Cart(request)
-    return render(request, "catalog/cart.html", {"cart": cart})
+    return render(
+        request,
+        "catalog/cart.html",
+        {
+            "cart": cart,
+            "total": cart.get_total_price(),
+        },
+    )
 
 
 @require_POST
@@ -76,7 +94,7 @@ def update_cart(request, product_id):
         if quantity > 0:
             cart.update(product, quantity)
         else:
-            cart.remove(product)  # якщо 0 — видаляємо
+            cart.remove(product)
     except ValueError:
-        pass  # якщо передали не число, нічого не робимо
+        pass
     return redirect("cart_detail")

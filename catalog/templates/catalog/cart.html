@@ -1,138 +1,124 @@
 {% extends "catalog/base.html" %}
 {% block content %}
-<div class="min-h-screen bg-background">
-    <main class="pt-24 pb-16">
-        <div class="container px-6">
-            {% if cart %}
-            <h1 class="font-display text-4xl md:text-5xl font-medium text-foreground mb-8 text-center">
-                Кошик
-            </h1>
+<div class="container px-6">
+    {% if cart %}
+    <h1 class="font-display text-4xl md:text-5xl font-medium text-foreground mb-8 text-center">
+        Кошик
+    </h1>
 
-            <div class="max-w-4xl mx-auto">
-                <div class="grid lg:grid-cols-3 gap-8">
-                    <!-- Cart Items -->
-                    <div class="lg:col-span-2 space-y-4">
-                        {% for item in cart %}
-                        <div class="flex gap-4 p-4 bg-card border border-border rounded-lg">
-                            <img src="{{ item.product.image }}" alt="{{ item.product.title }}"
-                                class="w-24 h-24 object-cover rounded-md" />
-                            <div class="flex-1">
-                                <div class="flex justify-between items-start">
-                                    <div>
-                                        <p class="font-body text-xs text-muted-foreground uppercase">
-                                            {{ item.product.category.name }}
-                                        </p>
-                                        <h3 class="font-display text-lg text-foreground">
-                                            {{ item.product.title }}
-                                        </h3>
-                                    </div>
-                                    <form action="{% url 'remove_from_cart' item.product.id %}" method="post">
+    <div class="max-w-4xl mx-auto px-6">
+        <div class="grid lg:grid-cols-3 gap-8">
+            <!-- Cart Items -->
+                <!-- Ліва частина: список товарів -->
+                <div class="lg:col-span-2 space-y-4">
+                    {% for item in cart %}
+                    <div class="flex justify-between items-center border-b pb-4">
+                        <img src="{{ item.product.image }}" alt="{{ item.product.title }}"
+                            class="w-24 h-24 object-cover rounded-md"
+                            style="width: 6rem; height: 6rem;"/>
+                        
+                        <div class="flex-1">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <p class="font-body text-xs text-muted-foreground uppercase">
+                                        {{ item.product.category.name }}
+                                    </p>
+                                    <h3 class="font-display text-lg text-foreground">
+                                        {{ item.product.title }}
+                                    </h3>
+                                </div>
+                                <form action="{% url 'remove_from_cart' item.product.id %}" method="post">
+                                    {% csrf_token %}
+                                    <button type="submit" class="p-1 hover:bg-secondary rounded transition-colors">
+                                        ✕
+                                    </button>
+                                </form>
+                            </div>
+            
+                            <div class="flex items-center justify-between mt-4">
+                                <div class="flex items-center gap-2">
+                                    <form action="{% url 'update_cart' item.product.id %}" method="post">
                                         {% csrf_token %}
-                                        <button type="submit" class="p-1 hover:bg-secondary rounded transition-colors">
-                                            ✕
+                                        <input type="hidden" name="quantity" value="{{ item.quantity|add:" -1" }}">
+                                        <button type="submit"
+                                            class="w-4 h-4 flex items-center justify-center border border-border rounded hover:bg-secondary transition-colors">
+                                            −
+                                        </button>
+                                    </form>
+            
+                                    <span class="font-body w-8 text-center">{{ item.quantity }}</span>
+                                    <form action="{% url 'update_cart' item.product.id %}" method="post">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="quantity" value="{{ item.quantity|add:" 1" }}">
+                                        <button type="submit"
+                                            class="w-4 h-4 flex items-center justify-center border border-border rounded hover:bg-secondary transition-colors">
+                                            +
                                         </button>
                                     </form>
                                 </div>
-
-                                <div class="flex items-center justify-between mt-4">
-                                    <div class="flex items-center gap-2">
-                                        <!-- кнопка "-" -->
-                                        <form action="{% url 'update_cart' item.product.id %}" method="post">
-                                            {% csrf_token %}
-                                            <input type="hidden" name="quantity" value="{{ item.quantity|add:" -1" }}">
-                                            <button type="submit"
-                                                class="w-8 h-8 flex items-center justify-center border border-border rounded hover:bg-secondary transition-colors">
-                                                −
-                                            </button>
-                                        </form>
-
-                                        <!-- кількість -->
-                                        <span class="font-body w-8 text-center">{{ item.quantity }}</span>
-
-                                        <!-- кнопка "+" -->
-                                        <form action="{% url 'update_cart' item.product.id %}" method="post">
-                                            {% csrf_token %}
-                                            <input type="hidden" name="quantity" value="{{ item.quantity|add:" 1" }}">
-                                            <button type="submit"
-                                                class="w-8 h-8 flex items-center justify-center border border-border rounded hover:bg-secondary transition-colors">
-                                                +
-                                            </button>
-                                        </form>
-                                    </div>
-                                    <p class="font-body font-medium text-foreground">
-                                        {{ item.total }} ₴
-                                    </p>
-                                </div>
+                                <p class="font-body font-medium text-foreground">
+                                    {{ item.total }} ₴
+                                </p>
                             </div>
                         </div>
-                        {% endfor %}
                     </div>
+                    {% endfor %}
+                </div>
+            
+            <!-- Order Summary -->
+            <div class="lg:col-span-1">
+                <div class="bg-card p-6 border border-border rounded-lg sticky top-24">
+                    <h2 class="font-display text-2xl font-medium text-foreground mb-4">Разом</h2>
 
-                    <!-- Order Summary -->
-                    <div class="lg:col-span-1">
-                        <div class="bg-card p-6 border border-border rounded-lg sticky top-24">
-                            <h2 class="font-display text-xl font-medium text-foreground mb-4">Разом</h2>
-
-                            <div class="space-y-3 mb-6">
-                                <div class="flex justify-between font-body text-sm">
-                                    <span class="text-muted-foreground">Товари</span>
-                                    <span>
-                                        {% with total=0 %}
-                                        {% for item in cart %}
-                                        {% widthratio item.total 1 1 as subtotal %}
-                                        {% with total=total|add:subtotal %}
-                                        {% endwith %}
-                                        {% endfor %}
-                                        {{ total }} ₴
-                                        {% endwith %}
-                                    </span>
-                                </div>
-                                <div class="flex justify-between font-body text-sm">
-                                    <span class="text-muted-foreground">Доставка</span>
-                                    <span>Безкоштовно</span>
-                                </div>
-                                <div class="border-t border-border pt-3">
-                                    <div class="flex justify-between font-body font-medium">
-                                        <span>До сплати</span>
-                                        <span class="text-primary">
-                                            {{ total }} ₴
-                                        </span>
-                                    </div>
-                                </div>
+                    <div class="space-y-3 mb-6">
+                        <div class="flex justify-between font-body text-sm">
+                            <span class="text-muted-foreground">Товари</span>
+                            {{ total }} ₴
+                        </div>
+                        <div class="flex justify-between font-body text-sm">
+                            <span class="text-muted-foreground">Доставка</span>
+                            <span>Безкоштовно</span>
+                        </div>
+                        <div class="border-t border-border pt-3">
+                            <div class="flex justify-between font-body font-medium">
+                                <span>До сплати</span>
+                                <span class="text-primary">
+                                    {{ total }} ₴
+                                </span>
                             </div>
-
-                            <form action="{% url 'checkout' %}" method="get">
-                                <button
-                                    type="submit"
-                                    class="w-full block text-center px-6 py-3 rounded-lg bg-amber-600 text-white font-body
-                                                hover:bg-amber-700 hover:text-gray-100 transition">
-                                        Оформити замовлення
-                                </button>
-                            </form>
-
-                            <a href="{% url 'product_list' %}"
-                                class="block text-center mt-4 font-body text-sm text-muted-foreground hover:text-foreground transition-colors">
-                                Продовжити покупки
-                            </a>
                         </div>
                     </div>
+
+                    <form action="{% url 'checkout' %}" method="get">
+                        <button type="submit" class="w-full block text-center px-6 py-3 rounded-lg
+                               bg-amber-600 text-white font-body
+                               hover:bg-amber-700 hover:text-gray-100
+                               transition cursor-pointer">
+                            Оформити замовлення
+                        </button>
+                    </form>
+
+                    <a href="{% url 'product_list' %}"
+                        class="block text-center mt-4 font-body text-sm text-muted-foreground hover:text-foreground transition-colors">
+                        Продовжити покупки
+                    </a>
                 </div>
             </div>
-            {% else %}
-            <!-- Empty cart -->
-            <div class="max-w-2xl mx-auto text-center py-16">
-                <div class="w-16 h-16 mx-auto text-muted-foreground mb-6">🛍️</div>
-                <h1 class="font-display text-3xl font-medium text-foreground mb-4">Кошик порожній</h1>
-                <p class="font-body text-muted-foreground mb-8">
-                    Додайте товари до кошика, щоб оформити замовлення
-                </p>
-                <a href="{% url 'product_list' %}"
-                    class="px-6 py-3 rounded-lg bg-primary text-white font-medium hover:bg-primary/90 transition">
-                    Перейти до каталогу
-                </a>
-            </div>
-            {% endif %}
         </div>
-    </main>
+    </div>
+    {% else %}
+    <!-- Empty cart -->
+    <div class="max-w-2xl mx-auto text-center py-16">
+        <h1 class="font-display text-3xl font-medium text-foreground mb-4">Кошик порожній</h1>
+        <p class="font-body text-muted-foreground mb-8">
+            Додайте товари до кошика, щоб оформити замовлення
+        </p>
+        <a href="{% url 'product_list' %}"
+            class="font-body text-muted-foreground mb-8 hover:text-foreground transition-colors">
+            Перейти до каталогу
+        </a>
+    </div>
+    {% endif %}
 </div>
+
 {% endblock %}

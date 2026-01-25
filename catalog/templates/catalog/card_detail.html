@@ -8,14 +8,11 @@
         <!-- Quick Add Button -->
         <form action="{% url 'add_to_cart' product.id %}" method="post">
             {% csrf_token %}
-            <button
-                class="absolute bottom-4 right-4 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
-                <!-- Shopping Bag Icon -->
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M16 11V7a4 4 0 00-8 0v4M5 11h14l-1.5 9h-11L5 11z" />
-                </svg>
+            <button class="absolute bottom-4 right-4 opacity-0 translate-y-2
+                       group-hover:opacity-100 group-hover:translate-y-0
+                       transition-all duration-300
+                       bg-ring text-primary-foreground rounded p-2 shadow hover:bg-primary/80">
+                <span class="material-icons">local_mall</span>
             </button>
         </form>
     </div>
