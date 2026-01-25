@@ -10,7 +10,7 @@ class CustomTableSection(TableSection):
     verbose_name = "Продукти"
     height = 300
     related_name = "products"
-    fields = ["pk", "title"]
+    fields = ["pk", "title", "price", "count"]
 
 
 @admin.register(Product)
@@ -19,10 +19,13 @@ class ProductAdmin(ModelAdmin):
     def category_preview(self, obj):
         return format_html("<a href='{}'>{}</a>", reverse("admin:catalog_category_change", args=[obj.category.id]), obj.category.name)
 
-    list_display = ["title", "price", "category_preview", "count"]
-    ordering = ["title"]
+    def reviews_preview(self, obj):
+        return obj.reviews.count()
+
+    list_display = ["title", "price", "category_preview", "count", "description", "reviews_preview"]
+    ordering = ["title", "price"]
     list_filter = ["category"]
-    search_fields = ["title"]
+    search_fields = ["title", "description"]
     list_editable = ["price", "count"]
 
     category_preview.short_description = "Категорія"

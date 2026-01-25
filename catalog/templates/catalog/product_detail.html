@@ -1,7 +1,167 @@
-<h2>{{ product.title }}</h2>
-<img src="{{ product.image }}" alt="{{ product.title }}" width="200">
-<p>{{ product.description }}</p>
-<p>Категорія: {{ product.category }}</p>
-<p>Ціна: {{ product.price }}</p>
+{% extends "catalog/base.html" %}
 
-<a href="{% url 'product_list' %}">Назад до списку</a>
+{% block title %}Про нас{% endblock %}
+
+{% block content %}
+        <div class="container px-6">
+
+            <!-- Breadcrumb -->
+            <nav class="mb-8">
+                <ol class="flex items-center gap-2 font-body text-sm text-muted-foreground">
+                    <li>
+                        <a href="{% url 'home' %}" class="hover:text-foreground transition-colors">Головна</a>
+                    </li>
+                    <li>/</li>
+                    <li>
+                        <a href="{% url 'product_list' %}" class="hover:text-foreground transition-colors">Каталог</a>
+                    </li>
+                    <li>/</li>
+                    <li class="text-foreground">{{ product.title }}</li>
+                </ol>
+            </nav>
+
+            <!-- Product Details -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+
+                <!-- Image Gallery -->
+                <div class="space-y-4">
+                    <div class="aspect-square overflow-hidden rounded-xl bg-secondary">
+                        <img src="{{ product.image.url }}" alt="{{ product.title }}"
+                            class="w-full h-full object-cover" />
+                    </div>
+
+                    <!-- Thumbnail grid -->
+                    <div class="grid grid-cols-4 gap-3">
+                        {% for thumb in product.thumbnails.all %}
+                            <div
+                                class="aspect-square overflow-hidden rounded-lg bg-secondary cursor-pointer transition-all {% if forloop.first %}ring-2 ring-primary{% else %}opacity-60 hover:opacity-100{% endif %}">
+                                <img src="{{ thumb.image.url }}" alt="{{ product.title }} {{ forloop.counter }}"
+                                    class="w-full h-full object-cover" />
+                            </div>
+                            {% empty %}
+                            {% for i in "1234" %}
+                                <div
+                                    class="aspect-square overflow-hidden rounded-lg bg-secondary cursor-pointer transition-all {% if forloop.first %}ring-2 ring-primary{% else %}opacity-60 hover:opacity-100{% endif %}">
+                                    <img src="{{ product.image.url }}" alt="{{ product.title }} {{ forloop.counter }}"
+                                        class="w-full h-full object-cover" />
+                                </div>
+                            {% endfor %}
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <!-- Product Info -->
+                <div class="space-y-1">
+                    <p class="font-body text-xs text-muted-foreground uppercase tracking-wider">
+                        {{ product.category.name }}
+                    </p>
+
+                    <h1 class="font-display text-lg text-foreground group-hover:text-primary transition-colors">
+                        {{ product.title }}
+                    </h1>
+
+                    <p class="font-display text-2xl text-primary mb-6">
+                        {{ product.price }} ₴
+                    </p>
+
+                    <p class="font-body text-muted-foreground mb-8 leading-relaxed">
+                        {{ product.description }}
+                    </p>
+
+                    <!-- Quantity Selector + Add to Cart -->
+                    <form method="post" action="{% url 'add_to_cart' product.id %}" class="mb-8">
+                        {% csrf_token %}
+                        <div class="flex items-center gap-4 mb-6">
+                            <span class="font-body text-sm text-foreground">Кількість:</span>
+                            <div class="flex items-center border border-border rounded-lg">
+                                <button type="button" class="p-2 hover:bg-secondary transition-colors"
+                                    onclick="const q=document.getElementById('qty'); q.value=Math.max(1, parseInt(q.value||'1')-1);"
+                                    aria-label="Зменшити кількість">
+                                    <!-- Minus icon -->
+                                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                                        <rect x="5" y="11" width="14" height="2" />
+                                    </svg>
+                                </button>
+
+                                <input id="qty" name="quantity" type="number" min="1" value="1"
+                                    class="w-12 text-center font-body" />
+
+                                <button type="button" class="p-2 hover:bg-secondary transition-colors"
+                                    onclick="const q=document.getElementById('qty'); q.value=parseInt(q.value||'1')+1;"
+                                    aria-label="Збільшити кількість">
+                                    <!-- Plus icon -->
+                                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M11 5h2v14h-2z" />
+                                        <path d="M5 11h14v2H5z" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <button type="submit"
+                            class="mb-8 inline-flex items-center px-4 py-2 rounded-lg bg-primary text-white hover:bg-primary/90 transition">
+                            <!-- ShoppingBag icon -->
+                            <svg class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M6 2a1 1 0 0 0-1 1v2H3a1 1 0 0 0 0 2h1l1.6 12.8A2 2 0 0 0 7.6 22h8.8a2 2 0 0 0 2-1.8L20 7h1a1 1 0 0 0 0-2h-2V3a1 1 0 0 0-1-1H6zm1 3V4h10v1H7z" />
+                            </svg>
+                            Додати в кошик
+                        </button>
+                    </form>
+
+                    <!-- Additional Info -->
+                    <div class="border-t border-border pt-6 space-y-4">
+                        <div class="flex items-start gap-4">
+                            <div
+                                class="w-10 h-10 rounded-full bg-secondary flex items-center justify-center flex-shrink-0">
+                                <span class="text-lg">🚚</span>
+                            </div>
+                            <div>
+                                <p class="font-body font-medium text-foreground text-sm">Безкоштовна доставка</p>
+                                <p class="font-body text-muted-foreground text-sm">При замовленні від 1500 ₴</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div
+                                class="w-10 h-10 rounded-full bg-secondary flex items-center justify-center flex-shrink-0">
+                                <span class="text-lg">↩️</span>
+                            </div>
+                            <div>
+                                <p class="font-body font-medium text-foreground text-sm">Легке повернення</p>
+                                <p class="font-body text-muted-foreground text-sm">Протягом 14 днів</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Related Products -->
+            {% if related_products %}
+            <section>
+                <h2 class="font-display text-2xl text-foreground mb-8">Схожі товари</h2>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    {% for p in related_products %}
+                    <a href="{% url 'product_detail' p.id %}" class="group">
+                        <div class="aspect-square overflow-hidden rounded-lg bg-secondary mb-3">
+                            <img src="{{ p.image.url }}" alt="{{ p.title }}"
+                                class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
+                        </div>
+                        <p class="font-body text-xs text-muted-foreground uppercase tracking-wider">
+                            {{ p.category.name }}
+                        </p>
+                        <h3 class="font-display text-foreground group-hover:text-primary transition-colors">
+                            {{ p.title }}
+                        </h3>
+                        <p class="font-body text-sm font-medium">
+                            {{ p.price }} ₴
+                        </p>
+                    </a>
+                    {% endfor %}
+                </div>
+            </section>
+            {% endif %}
+
+            
+        </div>
+
+{% endblock %}

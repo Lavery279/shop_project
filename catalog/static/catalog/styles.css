@@ -1,207 +1,45 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap');
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-/* =========================
-   Base Variables
-   ========================= */
-@layer base {
-    :root {
-        --background: 40 30% 97%;
-        --foreground: 30 10% 15%;
-
-        --card: 40 40% 99%;
-        --card-foreground: 30 10% 15%;
-
-        --popover: 40 40% 99%;
-        --popover-foreground: 30 10% 15%;
-
-        --primary: 25 40% 40%;
-        /* теплий теракотовий */
-        --primary-foreground: 40 30% 98%;
-
-        --secondary: 40 30% 92%;
-        /* світлий беж */
-        --secondary-foreground: 30 10% 20%;
-
-        --muted: 35 20% 94%;
-        --muted-foreground: 30 10% 45%;
-
-        --accent: 20 35% 50%;
-        /* м’який акцент */
-        --accent-foreground: 40 30% 98%;
-
-        --destructive: 0 72% 51%;
-        --destructive-foreground: 0 0% 100%;
-
-        --border: 35 20% 88%;
-        --input: 35 20% 90%;
-        --ring: 25 40% 40%;
-
-        --radius: 0.375rem;
-
-        --sidebar-background: 40 30% 97%;
-        --sidebar-foreground: 30 10% 25%;
-        --sidebar-primary: 25 40% 40%;
-        --sidebar-primary-foreground: 40 30% 98%;
-        --sidebar-accent: 35 30% 92%;
-        --sidebar-accent-foreground: 30 10% 20%;
-        --sidebar-border: 35 20% 88%;
-        --sidebar-ring: 25 40% 40%;
-
-        --font-display: 'Cormorant Garamond', serif;
-        --font-body: 'Inter', sans-serif;
-    }
-
-    .dark {
-        --background: 30 15% 8%;
-        --foreground: 40 20% 92%;
-
-        --card: 30 15% 10%;
-        --card-foreground: 40 20% 92%;
-
-        --popover: 30 15% 10%;
-        --popover-foreground: 40 20% 92%;
-
-        --primary: 25 45% 50%;
-        --primary-foreground: 30 10% 10%;
-
-        --secondary: 30 15% 18%;
-        --secondary-foreground: 40 20% 90%;
-
-        --muted: 30 10% 20%;
-        --muted-foreground: 35 15% 60%;
-
-        --accent: 20 40% 50%;
-        --accent-foreground: 30 10% 10%;
-
-        --destructive: 0 62% 45%;
-        --destructive-foreground: 0 0% 100%;
-
-        --border: 30 10% 20%;
-        --input: 30 10% 22%;
-        --ring: 25 45% 50%;
-
-        --sidebar-background: 30 15% 8%;
-        --sidebar-foreground: 40 20% 90%;
-        --sidebar-primary: 25 45% 50%;
-        --sidebar-primary-foreground: 30 10% 10%;
-        --sidebar-accent: 30 15% 15%;
-        --sidebar-accent-foreground: 40 20% 90%;
-        --sidebar-border: 30 10% 20%;
-        --sidebar-ring: 25 45% 50%;
-    }
-}
-
-/* =========================
-   Base Styles
-   ========================= */
-@layer base {
-    * {
-        @apply border-border;
-    }
-
-    body {
-        @apply bg-background text-foreground antialiased;
-        font-family: var(--font-body);
-    }
-
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-        font-family: var(--font-display);
-    }
-}
-
-/* =========================
-   Utilities
-   ========================= */
-@layer utilities {
-    .font-display {
-        font-family: var(--font-display);
-    }
-
-    .font-body {
-        font-family: var(--font-body);
-    }
-
-    .font-subtitle {
-        font-family: var(--font-body);
-        letter-spacing: 0.15em;
-        text-transform: uppercase;
-        font-size: 0.75rem;
-    }
-}
-
-/* =========================
-   Components
-   ========================= */
-@layer components {
-
-    /* Primary Button */
-    .btn-primary {
-        @apply inline-flex items-center px-6 py-3 bg-primary text-primary-foreground rounded-md font-body transition-colors hover:bg-primary/80;
-    }
-
-    /* Product Card */
-    .product-card {
-        @apply border rounded-lg overflow-hidden shadow hover:shadow-lg transition;
-    }
-
-    .product-card img {
-        @apply w-full h-48 object-cover;
-    }
-
-    .product-card h3 {
-        @apply text-lg font-medium text-foreground;
-    }
-
-    .product-card p {
-        @apply text-sm text-muted-foreground mt-2;
-    }
-
-    .product-card .price {
-        @apply block mt-4 text-primary font-medium;
-    }
-}
-
-/* =========================
-   Animations
-   ========================= */
-@keyframes fade-in {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.animate-fade-in {
-    animation: fade-in 0.6s ease forwards;
-}
-
-/* =========================
-   Layout
-   ========================= */
 #root {
     max-width: 1280px;
     margin: 0 auto;
-    padding: 0 1rem;
+    padding: 2rem;
+    text-align: center;
 }
 
-main {
-    @apply pt-24 pb-16;
+.logo {
+    height: 6em;
+    padding: 1.5em;
+    will-change: filter;
+    transition: filter 300ms;
 }
 
-footer {
-    @apply mt-auto;
+.logo:hover {
+    filter: drop-shadow(0 0 2em #646cffaa);
+}
+
+.logo.react:hover {
+    filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    a:nth-of-type(2) .logo {
+        animation: logo-spin infinite 20s linear;
+    }
+}
+
+.card {
+    padding: 2em;
+}
+
+.read-the-docs {
+    color: #888;
 }

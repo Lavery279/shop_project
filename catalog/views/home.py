@@ -1,5 +1,8 @@
 from django.shortcuts import render
+from catalog.models import Product
 
 
-def index(request):
-    return render(request, "catalog/index.html")
+def home(request):
+    products = Product.objects.all()[:8]
+
+    return render(request, "catalog/index.html", {"products": products})

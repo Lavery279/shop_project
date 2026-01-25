@@ -1,11 +1,79 @@
-<h1>Список товарів</h1>
-<ul>
-    {% for product in products %}
-    <li>
-        <a href="{% url 'product_detail' product.pk %}">
-            <img src="{{ product.image }}" alt="{{ product.title }}" width="100">
-            {{ product.title }} — {{ product.price }}
-        </a>
-    </li>
-    {% endfor %}
-</ul>
+{% extends "catalog/base.html" %}
+
+{% block title %}Каталог{% endblock %}
+
+{% block content %}
+
+        <main class="pt-24 pb-16">
+            <div class="container px-6">
+
+                <!-- Page Header -->
+                <div class="text-center mb-12">
+                    <h1 class="font-display text-4xl md:text-5xl font-medium text-foreground mb-4">
+                        Каталог
+                    </h1>
+                    <p class="font-body text-muted-foreground max-w-md mx-auto">
+                        Відкрийте для себе унікальну колекцію предметів декору для дому
+                    </p>
+                </div>
+
+                <!-- Пошук -->
+                <form method="get" class="mb-6">
+                    <input type="text" name="search" value="{{ request.GET.search }}" placeholder="Пошук товарів..."
+                        class="w-full md:w-1/2 border px-4 py-2 rounded shadow-sm">
+                </form>
+                
+                <!-- Категорії + Сортування -->
+                <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-4">
+                    <!-- Категорії -->
+                    <h2>Категорії</h2>
+                    <div class="flex flex-wrap gap-2">
+                        {% for cat in categories %}
+                        <form method="get">
+                            <input type="hidden" name="category" value="{{ cat.slug }}">
+                            <button type="submit"
+                                class="px-4 py-2 rounded-full border {% if request.GET.category == cat.slug %}bg-gray-800 text-white{% else %}bg-white text-gray-800{% endif %}">
+                                {{ cat.name }}
+                            </button>
+                        </form>
+                        {% endfor %}
+                    </div>
+
+
+                
+                    <!-- Сортування -->
+                    <form method="get">
+                        <select name="sort" class="border px-3 py-2 rounded" onchange="this.form.submit()">
+                            <option value="">За замовчуванням</option>
+                            <option value="price_asc" {% if request.GET.sort == 'price_asc' %}selected{% endif %}>Ціна ↑</option>
+                            <option value="price_desc" {% if request.GET.sort == 'price_desc' %}selected{% endif %}>Ціна ↓</option>
+                        </select>
+                    </form>
+                </div>
+                <!-- Знайдено товарів -->
+                {% if request.GET.search or request.GET.category or request.GET.sort %}
+                <p class="text-sm text-gray-600 mb-4">Знайдено товарів: {{ products|length }}</p>
+                {% endif %}
+
+                <!-- Products Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    {% for product in products %}
+                    <div class="animate-fade-in" style="animation-delay: {{ forloop.counter0|floatformat:2 }}s">
+                        {% include "catalog/card_detail.html" with product=product %}
+                    </div>
+                    {% endfor %}
+                </div>
+
+                {% if products|length == 0 %}
+                <div class="text-center py-16">
+                    <p class="font-body text-muted-foreground">
+                        Товарів у цій категорії поки немає
+                    </p>
+                </div>
+                {% endif %}
+            </div>
+        </main>
+        
+
+
+{% endblock %}
