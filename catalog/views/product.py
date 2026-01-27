@@ -28,7 +28,7 @@ def catalog_view(request):
     sort = request.GET.get("sort")
 
     if search:
-        products = products.filter(name__icontains=search)
+        products = products.filter(title__icontains=search)
 
     if category:
         products = products.filter(category__slug=category)

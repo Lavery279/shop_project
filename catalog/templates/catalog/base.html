@@ -6,8 +6,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Затишок</title>
-    <link href="{% static 'catalog/dist/assets/index-60hIm6Fe.css' %}" rel="stylesheet">
+    <link href="{% static 'catalog/styles.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'catalog/dist/assets/index-B-QsrTnE.css' %}">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body class="bg-background text-foreground min-h-screen flex flex-col">
@@ -52,12 +54,13 @@
             </div>
         </header>
 
-        <main class="pt-24 pb-16">
-            {% block content %}{% endblock %}
-        </main>
+            <main class="pt-24 pb-16">
+                {% block content %}{% endblock %}
+            </main>
+
 
         <!-- Footer -->
-        <footer class="bg-secondary py-16">
+        <footer class="bg-secondary py-16 border-t border-border">
             <div class="container mx-auto px-6 py-4">
                 <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
         

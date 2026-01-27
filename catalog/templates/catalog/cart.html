@@ -1,10 +1,22 @@
 {% extends "catalog/base.html" %}
 {% block content %}
-<div class="container px-6">
+<div class="container mx-auto px-6 py-4">
+        {% if messages %}
+    <div id="toast-container" class="fixed top-6 right-6 space-y-2 z-50">
+        {% for message in messages %}
+        <div class="p-4 rounded-md font-body shadow-lg
+                {% if message.tags == 'error' %} bg-red-600 text-white
+                {% else %} bg-green-600 text-white {% endif %}">
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
     {% if cart %}
-    <h1 class="font-display text-4xl md:text-5xl font-medium text-foreground mb-8 text-center">
+    <h1 class="font-display text-4xl md:text-4xl font-medium text-foreground mb-8 text-center">
         Кошик
     </h1>
+
 
     <div class="max-w-4xl mx-auto px-6">
         <div class="grid lg:grid-cols-3 gap-8">
@@ -120,5 +132,14 @@
     </div>
     {% endif %}
 </div>
-
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const toasts = document.querySelectorAll("#toast-container > div");
+        toasts.forEach((toast) => {
+            setTimeout(() => {
+                toast.classList.add("animate-fade-out");
+            }, 3000); // зникне через 3 секунди
+        });
+    });
+</script>
 {% endblock %}

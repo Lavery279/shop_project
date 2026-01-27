@@ -1,0 +1,110 @@
+{% extends "catalog/base.html" %}
+{% block content %}
+
+<div class="container mx-auto px-6">
+    <!-- Page Header -->
+    <div class="text-center mb-12">
+        <h1 class="font-display text-4xl md:text-5xl font-medium text-foreground mb-4">
+            Контакти
+        </h1>
+        <p class="font-body text-muted-foreground max-w-md mx-auto">
+            Маєте питання? Зв'яжіться з нами будь-яким зручним способом
+        </p>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
+        <!-- Contact Info -->
+        <div class="space-y-8">
+            <h2 class="font-display text-2xl font-medium text-foreground">Інформація</h2>
+
+            <div class="space-y-6">
+                <div class="flex gap-4">
+                    <div class="w-10 h-10 rounded-full bg-secondary flex items-center justify-center shrink-0">
+                        <span class="material-icons text-primary">place</span>
+                    </div>
+                    <div>
+                        <h3 class="font-body font-medium text-foreground">Адреса</h3>
+                        <p class="font-body text-sm text-muted-foreground">
+                            м. Київ, вул. Хрещатик, 1
+                        </p>
+                    </div>
+                </div>
+
+                <div class="flex gap-4">
+                    <div class="w-10 h-10 rounded-full bg-secondary flex items-center justify-center shrink-0">
+                        <span class="material-icons text-primary">phone</span>
+                    </div>
+                    <div>
+                        <h3 class="font-body font-medium text-foreground">Телефон</h3>
+                        <p class="font-body text-sm text-muted-foreground">
+                            +38 (044) 123-45-67
+                        </p>
+                    </div>
+                </div>
+
+                <div class="flex gap-4">
+                    <div class="w-10 h-10 rounded-full bg-secondary flex items-center justify-center shrink-0">
+                        <span class="material-icons text-primary">mail</span>
+                    </div>
+                    <div>
+                        <h3 class="font-body font-medium text-foreground">Email</h3>
+                        <p class="font-body text-sm text-muted-foreground">
+                            hello@zatyshok.ua
+                        </p>
+                    </div>
+                </div>
+
+                <div class="flex gap-4">
+                    <div class="w-10 h-10 rounded-full bg-secondary flex items-center justify-center shrink-0">
+                        <span class="material-icons text-primary">schedule</span>
+                    </div>
+                    <div>
+                        <h3 class="font-body font-medium text-foreground">Графік роботи</h3>
+                        <p class="font-body text-sm text-muted-foreground">
+                            Пн-Пт: 10:00 - 19:00<br />
+                            Сб-Нд: 11:00 - 17:00
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="bg-card p-8 rounded-lg border border-border">
+            <h2 class="font-display text-2xl font-medium text-foreground mb-6">
+                Напишіть нам
+            </h2>
+
+            <form action="{% url 'contacts' %}" method="post" class="space-y-4">
+                {% csrf_token %}
+
+                <div class="space-y-2">
+                    <label for="name" class="font-body">Ваше ім'я</label>
+                    <input id="name" name="name" type="text"
+                        class="font-body w-full rounded-md border border-border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
+                        placeholder="Введіть ім'я" required>
+                </div>
+
+                <div class="space-y-2">
+                    <label for="email" class="font-body">Email</label>
+                    <input id="email" name="email" type="email"
+                        class="font-body w-full rounded-md border border-border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
+                        placeholder="your@email.com" required>
+                </div>
+
+                <div class="space-y-2">
+                    <label for="message" class="font-body">Повідомлення</label>
+                    <textarea id="message" name="message"
+                        class="font-body w-full min-h-[120px] rounded-md border border-border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
+                        placeholder="Ваше повідомлення..." required></textarea>
+                </div>
+
+                <button type="submit"
+                    class="w-full font-body bg-primary text-primary-foreground rounded-md px-4 py-2 hover:bg-primary/80 transition-colors">
+                    Відправити
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -3,7 +3,7 @@
 {% block title %}Про нас{% endblock %}
 
 {% block content %}
-        <div class="container px-6">
+        <div class="container mx-auto px-6 py-4">
 
             <!-- Breadcrumb -->
             <nav class="mb-8">
@@ -26,27 +26,7 @@
                 <!-- Image Gallery -->
                 <div class="space-y-4">
                     <div class="aspect-square overflow-hidden rounded-xl bg-secondary">
-                        <img src="{{ product.image.url }}" alt="{{ product.title }}"
-                            class="w-full h-full object-cover" />
-                    </div>
-
-                    <!-- Thumbnail grid -->
-                    <div class="grid grid-cols-4 gap-3">
-                        {% for thumb in product.thumbnails.all %}
-                            <div
-                                class="aspect-square overflow-hidden rounded-lg bg-secondary cursor-pointer transition-all {% if forloop.first %}ring-2 ring-primary{% else %}opacity-60 hover:opacity-100{% endif %}">
-                                <img src="{{ thumb.image.url }}" alt="{{ product.title }} {{ forloop.counter }}"
-                                    class="w-full h-full object-cover" />
-                            </div>
-                            {% empty %}
-                            {% for i in "1234" %}
-                                <div
-                                    class="aspect-square overflow-hidden rounded-lg bg-secondary cursor-pointer transition-all {% if forloop.first %}ring-2 ring-primary{% else %}opacity-60 hover:opacity-100{% endif %}">
-                                    <img src="{{ product.image.url }}" alt="{{ product.title }} {{ forloop.counter }}"
-                                        class="w-full h-full object-cover" />
-                                </div>
-                            {% endfor %}
-                        {% endfor %}
+                        <img src="{{ product.image }}" alt="{{ product.title }}" class="w-full h-full object-cover" />
                     </div>
                 </div>
 
@@ -99,7 +79,7 @@
                         </div>
 
                         <button type="submit"
-                            class="mb-8 inline-flex items-center px-4 py-2 rounded-lg bg-primary text-white hover:bg-primary/90 transition">
+                            class="mb-8 inline-flex items-center px-4 py-2 rounded-lg bg-amber-600 text-white hover:bg-amber-700 transition">
                             <!-- ShoppingBag icon -->
                             <svg class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
                                 <path
@@ -111,20 +91,16 @@
 
                     <!-- Additional Info -->
                     <div class="border-t border-border pt-6 space-y-4">
-                        <div class="flex items-start gap-4">
-                            <div
-                                class="w-10 h-10 rounded-full bg-secondary flex items-center justify-center flex-shrink-0">
-                                <span class="text-lg">🚚</span>
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-full bg-secondary flex items-center justify-center flex-shrink-0">
+                                <span class="material-icons text-lg">local_shipping</span>
                             </div>
-                            <div>
-                                <p class="font-body font-medium text-foreground text-sm">Безкоштовна доставка</p>
-                                <p class="font-body text-muted-foreground text-sm">При замовленні від 1500 ₴</p>
-                            </div>
+                            <p class="font-body font-medium text-foreground text-sm">Безкоштовна доставка</p>
                         </div>
                         <div class="flex items-start gap-4">
                             <div
                                 class="w-10 h-10 rounded-full bg-secondary flex items-center justify-center flex-shrink-0">
-                                <span class="text-lg">↩️</span>
+                                <span class="material-icons text-lg">undo</span>
                             </div>
                             <div>
                                 <p class="font-body font-medium text-foreground text-sm">Легке повернення</p>
