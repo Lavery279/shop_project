@@ -4,7 +4,7 @@
     <h1 class="font-display text-4xl md:text-4xl font-medium text-foreground mb-8 text-center">
         Оформлення замовлення
     </h1>
-    
+
     {% if messages %}
     <div id="toast-container" class="fixed top-6 right-6 space-y-2 z-50">
         {% for message in messages %}
@@ -38,13 +38,13 @@
                         </div>
                         <div class="space-y-2">
                             <label for="phone" class="font-body">Телефон</label>
-                            <input type="text" name="phone" id="phone"
-                                class="font-body w-full border rounded p-2" placeholder="+380" required>
+                            <input type="text" name="phone" id="phone" class="font-body w-full border rounded p-2"
+                                placeholder="+380" required>
                         </div>
                         <div class="space-y-2">
                             <label for="email" class="font-body">Email</label>
-                            <input type="email" name="email" id="email"
-                                class="font-body w-full border rounded p-2" required>
+                            <input type="email" name="email" id="email" class="font-body w-full border rounded p-2"
+                                required>
                         </div>
                     </div>
                 </div>
@@ -53,13 +53,11 @@
                 <div class="bg-card p-6 border border-border rounded-lg">
                     <h2 class="font-display text-xl font-medium text-foreground mb-6">Доставка</h2>
                     <div class="space-y-3 mb-6">
-                        <label
-                            class="flex items-center space-x-3 p-3 border border-border rounded-lg cursor-pointer">
+                        <label class="flex items-center space-x-3 p-3 border border-border rounded-lg cursor-pointer">
                             <input type="radio" name="delivery_method" value="nova-poshta" required>
                             <span class="font-body flex-1">Нова Пошта (відділення)</span>
                         </label>
-                        <label
-                            class="flex items-center space-x-3 p-3 border border-border rounded-lg cursor-pointer">
+                        <label class="flex items-center space-x-3 p-3 border border-border rounded-lg cursor-pointer">
                             <input type="radio" name="delivery_method" value="courier">
                             <span class="font-body flex-1">Кур'єрська доставка</span>
                         </label>
@@ -73,8 +71,8 @@
                         </div>
                         <div class="space-y-2">
                             <label for="address" class="font-body">Адреса / Відділення</label>
-                            <input type="text" name="address" id="address"
-                                class="font-body w-full border rounded p-2" required>
+                            <input type="text" name="address" id="address" class="font-body w-full border rounded p-2"
+                                required>
                         </div>
                     </div>
                 </div>
@@ -83,13 +81,11 @@
                 <div class="bg-card p-6 border border-border rounded-lg">
                     <h2 class="font-display text-xl font-medium text-foreground mb-6">Оплата</h2>
                     <div class="space-y-3">
-                        <label
-                            class="flex items-center space-x-3 p-3 border border-border rounded-lg cursor-pointer">
+                        <label class="flex items-center space-x-3 p-3 border border-border rounded-lg cursor-pointer">
                             <input type="radio" name="payment_method" value="card" required>
                             <span class="font-body flex-1">Оплата карткою онлайн</span>
                         </label>
-                        <label
-                            class="flex items-center space-x-3 p-3 border border-border rounded-lg cursor-pointer">
+                        <label class="flex items-center space-x-3 p-3 border border-border rounded-lg cursor-pointer">
                             <input type="radio" name="payment_method" value="cash">
                             <span class="font-body flex-1">Накладений платіж</span>
                         </label>
@@ -106,8 +102,7 @@
                         {% for item in cart %}
                         <div class="flex gap-3">
                             <img src="{{ item.product.image }}" alt="{{ item.product.title }}"
-                                class="w-12 h-12 object-cover rounded"
-                                style="width: 3rem; height: 3rem;"/>
+                                class="w-12 h-12 object-cover rounded" style="width: 3rem; height: 3rem;" />
                             <div class="flex-1 min-w-0">
                                 <p class="font-body text-sm text-foreground truncate">{{ item.product.title }}
                                 </p>
@@ -136,7 +131,8 @@
                         </div>
                     </div>
 
-                    <button type="submit" class="w-full mt-6 font-body bg-amber-600 text-primary-foreground py-3 rounded-lg hover:bg-amber-700 transition-colors">
+                    <button type="submit"
+                        class="w-full mt-6 font-body bg-amber-600 text-primary-foreground py-3 rounded-lg hover:bg-amber-700 transition-colors">
                         Підтвердити замовлення
                     </button>
                 </div>

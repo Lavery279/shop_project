@@ -56,15 +56,15 @@
         <form method="get">
             <select name="sort" class="w-[180px] font-body border px-3 py-2 rounded" onchange="this.form.submit()">
                 <option value="">За замовчуванням</option>
-                <option value="price_asc" {% if request.GET.sort == 'price_asc' %}selected{% endif %}>Ціна: від низької
+                <option value="price_asc" {% if request.GET.sort=='price_asc' %}selected{% endif %}>Ціна: від низької
                 </option>
-                <option value="price_desc" {% if request.GET.sort == 'price_desc' %}selected{% endif %}>Ціна: від високої
+                <option value="price_desc" {% if request.GET.sort=='price_desc' %}selected{% endif %}>Ціна: від високої
                 </option>
             </select>
         </form>
     </div>
 
-    
+
     <!-- Products Grid -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
         {% for product in page_obj %}
@@ -75,7 +75,7 @@
         <p>Немає товарів</p>
         {% endfor %}
     </div>
-    
+
     <!-- Pagination -->
     <div class="flex justify-center mt-8 space-x-2">
         {% if page_obj.has_previous %}
@@ -84,7 +84,7 @@
             Назад
         </a>
         {% endif %}
-    
+
         {% for num in page_obj.paginator.page_range %}
         {% if page_obj.number == num %}
         <span class="px-3 py-1 rounded bg-gray-300">{{ num }}</span>
@@ -95,7 +95,7 @@
         </a>
         {% endif %}
         {% endfor %}
-    
+
         {% if page_obj.has_next %}
         <a href="?{% if sort %}sort={{ sort }}&{% endif %}{% if search %}search={{ search }}&{% endif %}{% if search %}search={{ search }}&{% endif %}{% if category %}category={{ category }}&{% endif %}page={{ page_obj.next_page_number }}"
             class="px-3 py-1 rounded bg-amber-600 text-white hover:bg-amber-700">

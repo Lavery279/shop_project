@@ -3,235 +3,234 @@
 {% block title %}Про нас{% endblock %}
 
 {% block content %}
-        <div class="container mx-auto px-6 py-4">
+<div class="container mx-auto px-6 py-4">
 
-            <!-- Breadcrumb -->
-            <nav class="mb-8">
-                <ol class="flex items-center gap-2 font-body text-sm text-muted-foreground">
-                    <li>
-                        <a href="{% url 'home' %}" class="hover:text-foreground transition-colors">Головна</a>
-                    </li>
-                    <li>/</li>
-                    <li>
-                        <a href="{% url 'catalog' %}" class="hover:text-foreground transition-colors">Каталог</a>
-                    </li>
-                    <li>/</li>
-                    <li class="text-foreground">{{ product.title }}</li>
-                </ol>
-            </nav>
+    <!-- Breadcrumb -->
+    <nav class="mb-8">
+        <ol class="flex items-center gap-2 font-body text-sm text-muted-foreground">
+            <li>
+                <a href="{% url 'home' %}" class="hover:text-foreground transition-colors">Головна</a>
+            </li>
+            <li>/</li>
+            <li>
+                <a href="{% url 'catalog' %}" class="hover:text-foreground transition-colors">Каталог</a>
+            </li>
+            <li>/</li>
+            <li class="text-foreground">{{ product.title }}</li>
+        </ol>
+    </nav>
 
-            <!-- Product Details -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+    <!-- Product Details -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
 
-                <!-- Image Gallery -->
-                <div class="space-y-4">
-                    <div class="aspect-square overflow-hidden rounded-xl bg-secondary">
-                        <img src="{{ product.image.url }}" alt="{{ product.title }}" class="w-full h-full object-cover" />
-                    </div>
-                </div>
-
-                <!-- Product Info -->
-                <div class="space-y-1">
-                    <p class="font-body text-xs text-muted-foreground uppercase tracking-wider">
-                        {{ product.category.name }}
-                    </p>
-
-                    <h1 class="font-display text-lg text-foreground group-hover:text-primary transition-colors">
-                        {{ product.title }}
-                    </h1>
-
-                    <p class="font-display text-2xl text-primary mb-6">
-                        {{ product.price }} ₴
-                    </p>
-
-                    <p class="font-body text-muted-foreground mb-8 leading-relaxed">
-                        {{ product.description }}
-                    </p>
-
-                    <!-- Quantity Selector + Add to Cart -->
-                    <form method="post" action="{% url 'add_to_cart' product.id %}" class="mb-8">
-                        {% csrf_token %}
-                        <div class="flex items-center gap-4 mb-6">
-                            <span class="font-body text-sm text-foreground">Кількість:</span>
-                            <div class="flex items-center border border-border rounded-lg">
-                                <button type="button" class="p-2 hover:bg-secondary transition-colors"
-                                    onclick="const q=document.getElementById('qty'); q.value=Math.max(1, parseInt(q.value||'1')-1);"
-                                    aria-label="Зменшити кількість">
-                                    <!-- Minus icon -->
-                                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-                                        <rect x="5" y="11" width="14" height="2" />
-                                    </svg>
-                                </button>
-
-                                <input id="qty" name="quantity" type="number" min="1" value="1"
-                                    class="w-12 text-center font-body" />
-
-                                <button type="button" class="p-2 hover:bg-secondary transition-colors"
-                                    onclick="const q=document.getElementById('qty'); q.value=parseInt(q.value||'1')+1;"
-                                    aria-label="Збільшити кількість">
-                                    <!-- Plus icon -->
-                                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M11 5h2v14h-2z" />
-                                        <path d="M5 11h14v2H5z" />
-                                    </svg>
-                                </button>
-                            </div>
-                        </div>
-
-                        <button type="submit"
-                            class="mb-8 inline-flex items-center px-4 py-2 rounded-lg bg-amber-600 text-white hover:bg-amber-700 transition">
-                            <!-- ShoppingBag icon -->
-                            <svg class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
-                                <path
-                                    d="M6 2a1 1 0 0 0-1 1v2H3a1 1 0 0 0 0 2h1l1.6 12.8A2 2 0 0 0 7.6 22h8.8a2 2 0 0 0 2-1.8L20 7h1a1 1 0 0 0 0-2h-2V3a1 1 0 0 0-1-1H6zm1 3V4h10v1H7z" />
-                            </svg>
-                            Додати в кошик
-                        </button>
-                    </form>
-
-                    <!-- Additional Info -->
-                    <div class="border-t border-border pt-6 space-y-4">
-                        <div class="flex items-center gap-4">
-                            <div class="w-10 h-10 rounded-full bg-secondary flex items-center justify-center flex-shrink-0">
-                                <span class="material-icons text-lg">local_shipping</span>
-                            </div>
-                            <p class="font-body font-medium text-foreground text-sm">Безкоштовна доставка</p>
-                        </div>
-                        <div class="flex items-start gap-4">
-                            <div
-                                class="w-10 h-10 rounded-full bg-secondary flex items-center justify-center flex-shrink-0">
-                                <span class="material-icons text-lg">undo</span>
-                            </div>
-                            <div>
-                                <p class="font-body font-medium text-foreground text-sm">Легке повернення</p>
-                                <p class="font-body text-muted-foreground text-sm">Протягом 14 днів</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <!-- Image Gallery -->
+        <div class="space-y-4">
+            <div class="aspect-square overflow-hidden rounded-xl bg-secondary">
+                <img src="{{ product.image.url }}" alt="{{ product.title }}" class="w-full h-full object-cover" />
             </div>
-
-            <!-- Related Products -->
-            {% if related_products %}
-            <section>
-                <h2 class="font-display text-2xl text-foreground mb-8">Схожі товари</h2>
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                    {% for p in related_products %}
-                    <a href="{% url 'product_detail' p.id %}" class="group">
-                        <div class="aspect-square overflow-hidden rounded-lg bg-secondary mb-3">
-                            <img src="{{ p.image.url }}" alt="{{ p.title }}"
-                                class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
-                        </div>
-                        <p class="font-body text-xs text-muted-foreground uppercase tracking-wider">
-                            {{ p.category.name }}
-                        </p>
-                        <h3 class="font-display text-foreground group-hover:text-primary transition-colors">
-                            {{ p.title }}
-                        </h3>
-                        <p class="font-body text-sm font-medium">
-                            {{ p.price }} ₴
-                        </p>
-                    </a>
-                    {% endfor %}
-                </div>
-            </section>
-            {% endif %}
-
-            
         </div>
-    <section class="border-t border-border pt-12 mt-12">
-        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
-            <h2 class="font-display text-2xl text-foreground">
-                Відгуки ({{ reviews|length }})
-            </h2>
-            {% if reviews %}
-            <div class="flex items-center gap-2">
-                {% include "catalog/star_rating.html" with rating=average_rating|floatformat:0 %}
-                <span class="font-body text-muted-foreground">
-                    {{ average_rating|floatformat:1 }} з 5
-                </span>
-            </div>
-            {% endif %}
-        </div>
-    
-        <!-- Review Form -->
-        <div class="bg-secondary/50 rounded-xl p-6 mb-8">
-            <h3 class="font-display text-lg text-foreground mb-4">Залишити відгук</h3>
-            {% if user.is_authenticated %}
-            <form method="post" class="space-y-4">
+
+        <!-- Product Info -->
+        <div class="space-y-1">
+            <p class="font-body text-xs text-muted-foreground uppercase tracking-wider">
+                {{ product.category.name }}
+            </p>
+
+            <h1 class="font-display text-lg text-foreground group-hover:text-primary transition-colors">
+                {{ product.title }}
+            </h1>
+
+            <p class="font-display text-2xl text-primary mb-6">
+                {{ product.price }} ₴
+            </p>
+
+            <p class="font-body text-muted-foreground mb-8 leading-relaxed">
+                {{ product.description }}
+            </p>
+
+            <!-- Quantity Selector + Add to Cart -->
+            <form method="post" action="{% url 'add_to_cart' product.id %}" class="mb-8">
                 {% csrf_token %}
-                <div>
-                    <label class="font-body text-sm text-foreground block mb-2">Ваша оцінка</label>
-                    {{ form.rating }}
-                    {% if form.rating.errors %}
-                    <p class="text-sm text-destructive">{{ form.rating.errors.0 }}</p>
-                    {% endif %}
+                <div class="flex items-center gap-4 mb-6">
+                    <span class="font-body text-sm text-foreground">Кількість:</span>
+                    <div class="flex items-center border border-border rounded-lg">
+                        <button type="button" class="p-2 hover:bg-secondary transition-colors"
+                            onclick="const q=document.getElementById('qty'); q.value=Math.max(1, parseInt(q.value||'1')-1);"
+                            aria-label="Зменшити кількість">
+                            <!-- Minus icon -->
+                            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                                <rect x="5" y="11" width="14" height="2" />
+                            </svg>
+                        </button>
+
+                        <input id="qty" name="quantity" type="number" min="1" value="1"
+                            class="w-12 text-center font-body" />
+
+                        <button type="button" class="p-2 hover:bg-secondary transition-colors"
+                            onclick="const q=document.getElementById('qty'); q.value=parseInt(q.value||'1')+1;"
+                            aria-label="Збільшити кількість">
+                            <!-- Plus icon -->
+                            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M11 5h2v14h-2z" />
+                                <path d="M5 11h14v2H5z" />
+                            </svg>
+                        </button>
+                    </div>
                 </div>
-                <div>
-                    <label class="font-body text-sm text-foreground block mb-2">Ваш коментар</label>
-                    {{ form.comment }}
-                    {% if form.comment.errors %}
-                    <p class="text-sm text-destructive">{{ form.comment.errors.0 }}</p>
-                    {% endif %}
-                    {% if form.comment.errors %}
-                    <p class="text-sm text-destructive">{{ form.comment.errors.0 }}</p>
-                    {% endif %}
-                </div>
-                <button type="submit" class="btn w-full" {% if is_submitting %}disabled{% endif %}>
-                    "is_submitting": request.method == "POST"
+
+                <button type="submit"
+                    class="mb-8 inline-flex items-center px-4 py-2 rounded-lg bg-amber-600 text-white hover:bg-amber-700 transition">
+                    <!-- ShoppingBag icon -->
+                    <svg class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M6 2a1 1 0 0 0-1 1v2H3a1 1 0 0 0 0 2h1l1.6 12.8A2 2 0 0 0 7.6 22h8.8a2 2 0 0 0 2-1.8L20 7h1a1 1 0 0 0 0-2h-2V3a1 1 0 0 0-1-1H6zm1 3V4h10v1H7z" />
+                    </svg>
+                    Додати в кошик
                 </button>
             </form>
-            {% else %}
-            <div class="text-center py-4">
-                <p class="font-body text-muted-foreground mb-4">
-                    Щоб залишити відгук, потрібно увійти в акаунт
-                </p>
-                <a href="{% url 'login' %}">
-                    <button class="btn btn-outline">Увійти</button>
-                </a>
-            </div>
-            {% endif %}
-        </div>
-    
-        <!-- Reviews List -->
-        {% if reviews %}
-        <div class="space-y-6">
-            {% for review in reviews %}
-            <div class="border-b border-border pb-6 {% if forloop.last %}border-0{% endif %}">
+
+            <!-- Additional Info -->
+            <div class="border-t border-border pt-6 space-y-4">
+                <div class="flex items-center gap-4">
+                    <div class="w-10 h-10 rounded-full bg-secondary flex items-center justify-center flex-shrink-0">
+                        <span class="material-icons text-lg">local_shipping</span>
+                    </div>
+                    <p class="font-body font-medium text-foreground text-sm">Безкоштовна доставка</p>
+                </div>
                 <div class="flex items-start gap-4">
                     <div class="w-10 h-10 rounded-full bg-secondary flex items-center justify-center flex-shrink-0">
-                        
-                        <svg class="w-5 h-5 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M5.121 17.804A9 9 0 1118.879 17.804M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                        </svg>
+                        <span class="material-icons text-lg">undo</span>
                     </div>
-                    <div class="flex-1">
-                        <div class="flex flex-col sm:flex-row sm:items-center gap-2 mb-2">
-                            <span class="font-body font-medium text-foreground">
-                                {{ review.user.username }}
-                            </span>
-                            <div class="flex items-center gap-2">
-                                {% include "catalog/star_rating.html" with rating=review.rating %}
-                                <span class="font-body text-xs text-muted-foreground">
-                                    {{ review.created|date:"d.m.Y H:i" }}
-                                </span>
-                            </div>
-                        </div>
-                        <p class="font-body text-muted-foreground leading-relaxed">
-                            {{ review.comment }}
-                        </p>
+                    <div>
+                        <p class="font-body font-medium text-foreground text-sm">Легке повернення</p>
+                        <p class="font-body text-muted-foreground text-sm">Протягом 14 днів</p>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <!-- Related Products -->
+    {% if related_products %}
+    <section>
+        <h2 class="font-display text-2xl text-foreground mb-8">Схожі товари</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+            {% for p in related_products %}
+            <a href="{% url 'product_detail' p.id %}" class="group">
+                <div class="aspect-square overflow-hidden rounded-lg bg-secondary mb-3">
+                    <img src="{{ p.image.url }}" alt="{{ p.title }}"
+                        class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
+                </div>
+                <p class="font-body text-xs text-muted-foreground uppercase tracking-wider">
+                    {{ p.category.name }}
+                </p>
+                <h3 class="font-display text-foreground group-hover:text-primary transition-colors">
+                    {{ p.title }}
+                </h3>
+                <p class="font-body text-sm font-medium">
+                    {{ p.price }} ₴
+                </p>
+            </a>
             {% endfor %}
         </div>
-        {% else %}
-        <div class="text-center py-8">
-            <p class="font-body text-muted-foreground">
-                Поки немає відгуків. Будьте першим!
-            </p>
+    </section>
+    {% endif %}
+
+
+</div>
+<section class="border-t border-border pt-12 mt-12">
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+        <h2 class="font-display text-2xl text-foreground">
+            Відгуки ({{ reviews|length }})
+        </h2>
+        {% if reviews %}
+        <div class="flex items-center gap-2">
+            {% include "catalog/star_rating.html" with rating=average_rating|floatformat:0 %}
+            <span class="font-body text-muted-foreground">
+                {{ average_rating|floatformat:1 }} з 5
+            </span>
         </div>
         {% endif %}
-    </section>
+    </div>
+
+    <!-- Review Form -->
+    <div class="bg-secondary/50 rounded-xl p-6 mb-8">
+        <h3 class="font-display text-lg text-foreground mb-4">Залишити відгук</h3>
+        {% if user.is_authenticated %}
+        <form method="post" class="space-y-4">
+            {% csrf_token %}
+            <div>
+                <label class="font-body text-sm text-foreground block mb-2">Ваша оцінка</label>
+                {{ form.rating }}
+                {% if form.rating.errors %}
+                <p class="text-sm text-destructive">{{ form.rating.errors.0 }}</p>
+                {% endif %}
+            </div>
+            <div>
+                <label class="font-body text-sm text-foreground block mb-2">Ваш коментар</label>
+                {{ form.comment }}
+                {% if form.comment.errors %}
+                <p class="text-sm text-destructive">{{ form.comment.errors.0 }}</p>
+                {% endif %}
+                {% if form.comment.errors %}
+                <p class="text-sm text-destructive">{{ form.comment.errors.0 }}</p>
+                {% endif %}
+            </div>
+            <button type="submit" class="btn w-full" {% if is_submitting %}disabled{% endif %}>
+                "is_submitting": request.method == "POST"
+            </button>
+        </form>
+        {% else %}
+        <div class="text-center py-4">
+            <p class="font-body text-muted-foreground mb-4">
+                Щоб залишити відгук, потрібно увійти в акаунт
+            </p>
+            <a href="{% url 'login' %}">
+                <button class="btn btn-outline">Увійти</button>
+            </a>
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- Reviews List -->
+    {% if reviews %}
+    <div class="space-y-6">
+        {% for review in reviews %}
+        <div class="border-b border-border pb-6 {% if forloop.last %}border-0{% endif %}">
+            <div class="flex items-start gap-4">
+                <div class="w-10 h-10 rounded-full bg-secondary flex items-center justify-center flex-shrink-0">
+
+                    <svg class="w-5 h-5 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M5.121 17.804A9 9 0 1118.879 17.804M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                </div>
+                <div class="flex-1">
+                    <div class="flex flex-col sm:flex-row sm:items-center gap-2 mb-2">
+                        <span class="font-body font-medium text-foreground">
+                            {{ review.user.username }}
+                        </span>
+                        <div class="flex items-center gap-2">
+                            {% include "catalog/star_rating.html" with rating=review.rating %}
+                            <span class="font-body text-xs text-muted-foreground">
+                                {{ review.created|date:"d.m.Y H:i" }}
+                            </span>
+                        </div>
+                    </div>
+                    <p class="font-body text-muted-foreground leading-relaxed">
+                        {{ review.comment }}
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="text-center py-8">
+        <p class="font-body text-muted-foreground">
+            Поки немає відгуків. Будьте першим!
+        </p>
+    </div>
+    {% endif %}
+</section>
 {% endblock %}

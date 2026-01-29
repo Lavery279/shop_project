@@ -20,7 +20,8 @@
     <!-- Product Info -->
     <div class="space-y-1">
         <p class="font-body text-xs text-muted-foreground uppercase tracking-wider">{{ product.category.name }}</p>
-        <h3 class="font-display text-lg text-foreground group-hover:text-primary transition-colors">{{ product.title }}</h3>
+        <h3 class="font-display text-lg text-foreground group-hover:text-primary transition-colors">{{ product.title }}
+        </h3>
         <div class="flex items-center justify-between">
             <p class="font-body text-sm font-medium text-foreground">{{ product.price }} ₴</p>
             {% if product.rating_count %}
@@ -32,7 +33,8 @@
                         d="M12 .587l3.668 7.431 8.2 1.193-5.934 5.787 1.402 8.168L12 18.896l-7.336 3.87 1.402-8.168L.132 9.211l8.2-1.193z" />
                     </svg>
                     {% else %}
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 fill-gray-300 text-gray-300" viewBox="0 0 24 24">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 fill-gray-300 text-gray-300"
+                        viewBox="0 0 24 24">
                         <path
                             d="M12 .587l3.668 7.431 8.2 1.193-5.934 5.787 1.402 8.168L12 18.896l-7.336 3.87 1.402-8.168L.132 9.211l8.2-1.193z" />
                     </svg>

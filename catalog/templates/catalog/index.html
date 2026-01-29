@@ -4,52 +4,53 @@
 
 {% block content %}
 
-    <!-- Hero Section -->
-    <section class="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
-        <!-- Background Image -->
-        <div class="absolute inset-0">
-            <img src="/static/catalog/hero-image.jpg" alt="Колекція декору для дому" class="w-full h-full object-cover" />
-            <div class="absolute inset-0 bg-gradient-to-r from-background/90 via-background/50 to-transparent"></div>
+<!-- Hero Section -->
+<section class="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
+    <!-- Background Image -->
+    <div class="absolute inset-0">
+        <img src="/static/catalog/hero-image.jpg" alt="Колекція декору для дому" class="w-full h-full object-cover" />
+        <div class="absolute inset-0 bg-gradient-to-r from-background/90 via-background/50 to-transparent"></div>
+    </div>
+
+    <!-- Content -->
+    <div class="container relative z-10 px-6">
+        <div class="max-w-xl">
+            <span class="inline-block font-body text-xs uppercase tracking-[0.2em] text-primary mb-4 animate-fade-in">
+                Нова колекція
+            </span>
+            <h1 class="font-display text-5xl md:text-6xl lg:text-7xl font-medium text-foreground leading-tight mb-6 animate-fade-in"
+                style="animation-delay:0.1s">
+                Краса в простоті
+            </h1>
+            <p class="font-body text-lg text-muted-foreground mb-8 animate-fade-in" style="animation-delay:0.2s">
+                Відкрийте для себе унікальну колекцію предметів декору, що створюють атмосферу затишку у вашому домі.
+            </p>
+            <a href="/products"
+                class="inline-flex items-center px-6 py-3 bg-amber-800 shadow-md rounded-md font-medium text-white group transition-colors"
+                style="animation-delay:0.3s">
+                Переглянути каталог
+                <!-- Arrow Icon -->
+                <svg xmlns="http://www.w3.org/2000/svg"
+                    class="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+            </a>
         </div>
-    
-        <!-- Content -->
-        <div class="container relative z-10 px-6">
-            <div class="max-w-xl">
-                <span class="inline-block font-body text-xs uppercase tracking-[0.2em] text-primary mb-4 animate-fade-in">
-                    Нова колекція
-                </span>
-                <h1 class="font-display text-5xl md:text-6xl lg:text-7xl font-medium text-foreground leading-tight mb-6 animate-fade-in" style="animation-delay:0.1s">
-                    Краса в простоті
-                </h1>
-                <p class="font-body text-lg text-muted-foreground mb-8 animate-fade-in" style="animation-delay:0.2s">
-                    Відкрийте для себе унікальну колекцію предметів декору, що створюють атмосферу затишку у вашому домі.
-                </p>
-                <a href="/products"
-                    class="inline-flex items-center px-6 py-3 bg-amber-800 shadow-md rounded-md font-medium text-white group transition-colors"
-                    style="animation-delay:0.3s">
-                    Переглянути каталог
-                    <!-- Arrow Icon -->
-                    <svg xmlns="http://www.w3.org/2000/svg"
-                        class="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                    </svg>
-                </a>
-            </div>
+    </div>
+</section>
+<section class="py-20 bg-gray-50">
+    <div class="container mx-auto px-6">
+        <!-- Section Header -->
+        <div class="text-center mb-12">
+            <span class="text-xs uppercase tracking-[0.2em] text-amber-700 mb-3 block">
+                Популярне
+            </span>
+            <h2 class="text-3xl md:text-4xl font-medium text-gray-900">
+                Обрані товари
+            </h2>
         </div>
-    </section>
-    <section class="py-20 bg-gray-50">
-        <div class="container mx-auto px-6">
-            <!-- Section Header -->
-            <div class="text-center mb-12">
-                <span class="text-xs uppercase tracking-[0.2em] text-amber-700 mb-3 block">
-                    Популярне
-                </span>
-                <h2 class="text-3xl md:text-4xl font-medium text-gray-900">
-                    Обрані товари
-                </h2>
-            </div>
-    
+
         <!-- Products Grid -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 ">
             {% for product in products %}
@@ -58,19 +59,19 @@
             </div>
             {% endfor %}
         </div>
-    
-            <!-- View All Link -->
-            <div class="text-center mt-12">
-                <a href="/products"
-                    class="inline-flex items-center text-sm text-amber-700 hover:text-amber-600 transition-colors group">
-                    Дивитись усі товари
-                    <svg class="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
-                </a>
-            </div>
+
+        <!-- View All Link -->
+        <div class="text-center mt-12">
+            <a href="/products"
+                class="inline-flex items-center text-sm text-amber-700 hover:text-amber-600 transition-colors group">
+                Дивитись усі товари
+                <svg class="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+            </a>
         </div>
-    </section>
+    </div>
+</section>
 {% endblock %}

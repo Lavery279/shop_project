@@ -44,9 +44,7 @@ def catalog_view(request):
 
 def product_detail(request, pk):
     product = get_object_or_404(Product, pk=pk)
-    reviews = product.reviews.all().order_by(
-        "-created"
-    )
+    reviews = product.reviews.all().order_by("-created")
 
     if request.method == "POST":
         form = ReviewForm(request.POST)

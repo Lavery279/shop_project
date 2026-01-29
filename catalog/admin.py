@@ -17,12 +17,23 @@ class CustomTableSection(TableSection):
 class ProductAdmin(ModelAdmin):
 
     def category_preview(self, obj):
-        return format_html("<a href='{}'>{}</a>", reverse("admin:catalog_category_change", args=[obj.category.id]), obj.category.name)
+        return format_html(
+            "<a href='{}'>{}</a>",
+            reverse("admin:catalog_category_change", args=[obj.category.id]),
+            obj.category.name,
+        )
 
     def reviews_preview(self, obj):
         return obj.reviews.count()
 
-    list_display = ["title", "price", "category_preview", "count", "description", "reviews_preview"]
+    list_display = [
+        "title",
+        "price",
+        "category_preview",
+        "count",
+        "description",
+        "reviews_preview",
+    ]
     ordering = ["title", "price"]
     list_filter = ["category"]
     search_fields = ["title", "description"]
@@ -38,6 +49,7 @@ class ProductAdmin(ModelAdmin):
 class CategoryAdmin(ModelAdmin):
     def count_products(self, obj):
         return obj.products.count()
+
     count_products.short_description = "Кількість продуктів"
     list_display = ["name", "count_products"]
     list_sections = [CustomTableSection]

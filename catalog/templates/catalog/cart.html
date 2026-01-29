@@ -1,7 +1,7 @@
 {% extends "catalog/base.html" %}
 {% block content %}
 <div class="container mx-auto px-6 py-4">
-        {% if messages %}
+    {% if messages %}
     <div id="toast-container" class="fixed top-6 right-6 space-y-2 z-50">
         {% for message in messages %}
         <div class="p-4 rounded-md font-body shadow-lg
@@ -21,61 +21,60 @@
     <div class="max-w-4xl mx-auto px-6">
         <div class="grid lg:grid-cols-3 gap-8">
             <!-- Cart Items -->
-                <div class="lg:col-span-2 space-y-4">
-                    {% for item in cart %}
-                    <div class="flex justify-between items-center border-b pb-4">
-                        <img src="{{ item.product.image.url }}" alt="{{ item.product.title }}"
-                            class="w-24 h-24 object-cover rounded-md"
-                            style="width: 6rem; height: 6rem;"/>
-                        
-                        <div class="flex-1 ml-4">
-                            <div class="flex justify-between items-start">
-                                <div>
-                                    <p class="font-body text-xs text-muted-foreground uppercase">
-                                        {{ item.product.category.name }}
-                                    </p>
-                                    <h3 class="font-display text-lg text-foreground">
-                                        {{ item.product.title }}
-                                    </h3>
-                                </div>
-                                <form action="{% url 'remove_from_cart' item.product.id %}" method="post">
+            <div class="lg:col-span-2 space-y-4">
+                {% for item in cart %}
+                <div class="flex justify-between items-center border-b pb-4">
+                    <img src="{{ item.product.image.url }}" alt="{{ item.product.title }}"
+                        class="w-24 h-24 object-cover rounded-md" style="width: 6rem; height: 6rem;" />
+
+                    <div class="flex-1 ml-4">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <p class="font-body text-xs text-muted-foreground uppercase">
+                                    {{ item.product.category.name }}
+                                </p>
+                                <h3 class="font-display text-lg text-foreground">
+                                    {{ item.product.title }}
+                                </h3>
+                            </div>
+                            <form action="{% url 'remove_from_cart' item.product.id %}" method="post">
+                                {% csrf_token %}
+                                <button type="submit" class="p-1 hover:bg-secondary rounded transition-colors">
+                                    ✕
+                                </button>
+                            </form>
+                        </div>
+
+                        <div class="flex items-center justify-between mt-4">
+                            <div class="flex items-center gap-2">
+                                <form action="{% url 'update_cart' item.product.id %}" method="post">
                                     {% csrf_token %}
-                                    <button type="submit" class="p-1 hover:bg-secondary rounded transition-colors">
-                                        ✕
+                                    <input type="hidden" name="quantity" value="{{ item.quantity|add:" -1" }}">
+                                    <button type="submit"
+                                        class="w-4 h-4 flex items-center justify-center border border-border rounded hover:bg-secondary transition-colors">
+                                        −
+                                    </button>
+                                </form>
+
+                                <span class="font-body w-8 text-center">{{ item.quantity }}</span>
+                                <form action="{% url 'update_cart' item.product.id %}" method="post">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="quantity" value="{{ item.quantity|add:" 1" }}">
+                                    <button type="submit"
+                                        class="w-4 h-4 flex items-center justify-center border border-border rounded hover:bg-secondary transition-colors">
+                                        +
                                     </button>
                                 </form>
                             </div>
-            
-                            <div class="flex items-center justify-between mt-4">
-                                <div class="flex items-center gap-2">
-                                    <form action="{% url 'update_cart' item.product.id %}" method="post">
-                                        {% csrf_token %}
-                                        <input type="hidden" name="quantity" value="{{ item.quantity|add:" -1" }}">
-                                        <button type="submit"
-                                            class="w-4 h-4 flex items-center justify-center border border-border rounded hover:bg-secondary transition-colors">
-                                            −
-                                        </button>
-                                    </form>
-            
-                                    <span class="font-body w-8 text-center">{{ item.quantity }}</span>
-                                    <form action="{% url 'update_cart' item.product.id %}" method="post">
-                                        {% csrf_token %}
-                                        <input type="hidden" name="quantity" value="{{ item.quantity|add:" 1" }}">
-                                        <button type="submit"
-                                            class="w-4 h-4 flex items-center justify-center border border-border rounded hover:bg-secondary transition-colors">
-                                            +
-                                        </button>
-                                    </form>
-                                </div>
-                                <p class="font-body font-medium text-foreground">
-                                    {{ item.total }} ₴
-                                </p>
-                            </div>
+                            <p class="font-body font-medium text-foreground">
+                                {{ item.total }} ₴
+                            </p>
                         </div>
                     </div>
-                    {% endfor %}
                 </div>
-            
+                {% endfor %}
+            </div>
+
             <!-- Order Summary -->
             <div class="lg:col-span-1">
                 <div class="bg-card p-6 border border-border rounded-lg sticky top-24">

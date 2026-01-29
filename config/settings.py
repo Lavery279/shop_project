@@ -26,9 +26,9 @@ load_dotenv(os.path.join(BASE_DIR, '.env'))
 SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv("IS_PRODUCTION") == 'False'
+DEBUG = os.getenv("IS_PRODUCTION") == 'false'
 
-ALLOWED_HOSTS = [os.getenv("ALLOWED_HOSTS")] if os.getenv("IS_PRODUCTION") == 'True' else []
+ALLOWED_HOSTS = [os.getenv("ALLOWED_HOSTS")] if os.getenv("IS_PRODUCTION") == 'true' else []
 
 
 # Application definition
@@ -137,13 +137,10 @@ LOCALE_PATHS = [os.path.join(BASE_DIR, "locale")]
 
 STATIC_URL = 'static/'
 
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
-    BASE_DIR / '..' / 'frontend' / 'vite-project' / 'dist',
-]
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 from django.templatetags.static import static
 from django.urls import reverse_lazy
