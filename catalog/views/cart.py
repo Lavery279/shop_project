@@ -29,6 +29,10 @@ class Cart:
 
     def __iter__(self):
         for product_id, item in self.cart.items():
+            try:
+                product = Product.objects.get(id=product_id)
+            except Product.DoesNotExist:
+                continue
             yield {
                 "product": Product.objects.get(id=product_id),
                 "quantity": item["quantity"],

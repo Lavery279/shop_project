@@ -13,7 +13,7 @@
                     </li>
                     <li>/</li>
                     <li>
-                        <a href="{% url 'product_list' %}" class="hover:text-foreground transition-colors">Каталог</a>
+                        <a href="{% url 'catalog' %}" class="hover:text-foreground transition-colors">Каталог</a>
                     </li>
                     <li>/</li>
                     <li class="text-foreground">{{ product.title }}</li>
@@ -26,7 +26,7 @@
                 <!-- Image Gallery -->
                 <div class="space-y-4">
                     <div class="aspect-square overflow-hidden rounded-xl bg-secondary">
-                        <img src="{{ product.image }}" alt="{{ product.title }}" class="w-full h-full object-cover" />
+                        <img src="{{ product.image.url }}" alt="{{ product.title }}" class="w-full h-full object-cover" />
                     </div>
                 </div>
 
@@ -139,5 +139,99 @@
 
             
         </div>
-
+    <section class="border-t border-border pt-12 mt-12">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+            <h2 class="font-display text-2xl text-foreground">
+                Відгуки ({{ reviews|length }})
+            </h2>
+            {% if reviews %}
+            <div class="flex items-center gap-2">
+                {% include "catalog/star_rating.html" with rating=average_rating|floatformat:0 %}
+                <span class="font-body text-muted-foreground">
+                    {{ average_rating|floatformat:1 }} з 5
+                </span>
+            </div>
+            {% endif %}
+        </div>
+    
+        <!-- Review Form -->
+        <div class="bg-secondary/50 rounded-xl p-6 mb-8">
+            <h3 class="font-display text-lg text-foreground mb-4">Залишити відгук</h3>
+            {% if user.is_authenticated %}
+            <form method="post" class="space-y-4">
+                {% csrf_token %}
+                <div>
+                    <label class="font-body text-sm text-foreground block mb-2">Ваша оцінка</label>
+                    {{ form.rating }}
+                    {% if form.rating.errors %}
+                    <p class="text-sm text-destructive">{{ form.rating.errors.0 }}</p>
+                    {% endif %}
+                </div>
+                <div>
+                    <label class="font-body text-sm text-foreground block mb-2">Ваш коментар</label>
+                    {{ form.comment }}
+                    {% if form.comment.errors %}
+                    <p class="text-sm text-destructive">{{ form.comment.errors.0 }}</p>
+                    {% endif %}
+                    {% if form.comment.errors %}
+                    <p class="text-sm text-destructive">{{ form.comment.errors.0 }}</p>
+                    {% endif %}
+                </div>
+                <button type="submit" class="btn w-full" {% if is_submitting %}disabled{% endif %}>
+                    "is_submitting": request.method == "POST"
+                </button>
+            </form>
+            {% else %}
+            <div class="text-center py-4">
+                <p class="font-body text-muted-foreground mb-4">
+                    Щоб залишити відгук, потрібно увійти в акаунт
+                </p>
+                <a href="{% url 'login' %}">
+                    <button class="btn btn-outline">Увійти</button>
+                </a>
+            </div>
+            {% endif %}
+        </div>
+    
+        <!-- Reviews List -->
+        {% if reviews %}
+        <div class="space-y-6">
+            {% for review in reviews %}
+            <div class="border-b border-border pb-6 {% if forloop.last %}border-0{% endif %}">
+                <div class="flex items-start gap-4">
+                    <div class="w-10 h-10 rounded-full bg-secondary flex items-center justify-center flex-shrink-0">
+                        
+                        <svg class="w-5 h-5 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M5.121 17.804A9 9 0 1118.879 17.804M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                    </div>
+                    <div class="flex-1">
+                        <div class="flex flex-col sm:flex-row sm:items-center gap-2 mb-2">
+                            <span class="font-body font-medium text-foreground">
+                                {{ review.user.username }}
+                            </span>
+                            <div class="flex items-center gap-2">
+                                {% include "catalog/star_rating.html" with rating=review.rating %}
+                                <span class="font-body text-xs text-muted-foreground">
+                                    {{ review.created|date:"d.m.Y H:i" }}
+                                </span>
+                            </div>
+                        </div>
+                        <p class="font-body text-muted-foreground leading-relaxed">
+                            {{ review.comment }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="text-center py-8">
+            <p class="font-body text-muted-foreground">
+                Поки немає відгуків. Будьте першим!
+            </p>
+        </div>
+        {% endif %}
+    </section>
 {% endblock %}

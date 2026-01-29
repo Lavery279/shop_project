@@ -16,58 +16,92 @@
     </div>
 
     <!-- Пошук -->
-    <form method="get" class="mb-6">
+    <form method="get" class="mb-8">
         <input type="text" name="search" value="{{ request.GET.search }}" placeholder="Пошук товарів..."
             class="w-full md:w-1/2 border px-4 py-2 rounded shadow-sm">
+        {% if request.GET.search %}
+        <div class="mt-3 flex items-center gap-2">
+            <span class="font-body text-sm text-muted-foreground">
+                Результати для: "{{ request.GET.search }}"
+            </span>
+            <a href="{% url 'catalog' %}" class="font-body text-sm text-primary hover:underline">
+                Очистити
+            </a>
+        </div>
+        {% endif %}
     </form>
-    
-    <!-- Категорії + Сортування -->
-    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-4">
+
+    <!-- Фільтри -->
+    <div
+        class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8 pb-6 border-b border-border">
+
         <!-- Категорії -->
-        <h2>Категорії</h2>
         <div class="flex flex-wrap gap-2">
+            <a href="{% url 'catalog' %}" class="font-body px-4 py-2 rounded-full border bg-white text-gray-800">
+                Всі
+            </a>
             {% for cat in categories %}
-            <form method="get">
-                <input type="hidden" name="category" value="{{ cat.slug }}">
-                <button type="submit"
-                    class="px-4 py-2 rounded-full border {% if request.GET.category == cat.slug %}bg-gray-800 text-white{% else %}bg-white text-gray-800{% endif %}">
-                    {{ cat.name }}
-                </button>
-            </form>
+            <a href="?category={{ cat.slug }}" class="font-body px-4 py-2 rounded-full border
+                          {% if request.GET.category == cat.slug %}
+                              bg-gray-800 text-white
+                          {% else %}
+                              bg-white text-gray-800
+                          {% endif %}">
+                {{ cat.name }}
+            </a>
             {% endfor %}
         </div>
 
-
-    
         <!-- Сортування -->
         <form method="get">
-            <select name="sort" class="border px-3 py-2 rounded" onchange="this.form.submit()">
+            <select name="sort" class="w-[180px] font-body border px-3 py-2 rounded" onchange="this.form.submit()">
                 <option value="">За замовчуванням</option>
-                <option value="price_asc" {% if request.GET.sort == 'price_asc' %}selected{% endif %}>Ціна ↑</option>
-                <option value="price_desc" {% if request.GET.sort == 'price_desc' %}selected{% endif %}>Ціна ↓</option>
+                <option value="price_asc" {% if request.GET.sort == 'price_asc' %}selected{% endif %}>Ціна: від низької
+                </option>
+                <option value="price_desc" {% if request.GET.sort == 'price_desc' %}selected{% endif %}>Ціна: від високої
+                </option>
             </select>
         </form>
     </div>
-    <!-- Знайдено товарів -->
-    {% if request.GET.search or request.GET.category or request.GET.sort %}
-    <p class="text-sm text-gray-600 mb-4">Знайдено товарів: {{ products|length }}</p>
-    {% endif %}
 
+    
     <!-- Products Grid -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-        {% for product in products %}
-        <div class="animate-fade-in" style="animation-delay: {{ forloop.counter0|floatformat:2 }}s">
+        {% for product in page_obj %}
+        <div class="animate-fade-in" style="animation-delay: {{ forloop.counter0|add:" 0.05"|floatformat:2 }}s">
             {% include "catalog/card_detail.html" with product=product %}
         </div>
+        {% empty %}
+        <p>Немає товарів</p>
         {% endfor %}
     </div>
-
-    {% if products|length == 0 %}
-    <div class="text-center py-16">
-        <p class="font-body text-muted-foreground">
-            Товарів у цій категорії поки немає
-        </p>
+    
+    <!-- Pagination -->
+    <div class="flex justify-center mt-8 space-x-2">
+        {% if page_obj.has_previous %}
+        <a href="?{% if sort %}sort={{ sort }}&{% endif %}{% if search %}search={{ search }}&{% endif %}{% if category %}category={{ category }}&{% endif %}page={{ page_obj.previous_page_number }}"
+            class="px-3 py-1 rounded bg-amber-600 text-white hover:bg-amber-700">
+            Назад
+        </a>
+        {% endif %}
+    
+        {% for num in page_obj.paginator.page_range %}
+        {% if page_obj.number == num %}
+        <span class="px-3 py-1 rounded bg-gray-300">{{ num }}</span>
+        {% else %}
+        <a href="?{% if sort %}sort={{ sort }}&{% endif %}{% if search %}search={{ search }}&{% endif %}{% if category %}category={{ category }}&{% endif %}page={{ num }}"
+            class="px-3 py-1 rounded border hover:bg-gray-100">
+            {{ num }}
+        </a>
+        {% endif %}
+        {% endfor %}
+    
+        {% if page_obj.has_next %}
+        <a href="?{% if sort %}sort={{ sort }}&{% endif %}{% if search %}search={{ search }}&{% endif %}{% if search %}search={{ search }}&{% endif %}{% if category %}category={{ category }}&{% endif %}page={{ page_obj.next_page_number }}"
+            class="px-3 py-1 rounded bg-amber-600 text-white hover:bg-amber-700">
+            Вперед
+        </a>
+        {% endif %}
     </div>
-    {% endif %}
 </div>
 {% endblock %}

@@ -21,15 +21,14 @@
     <div class="max-w-4xl mx-auto px-6">
         <div class="grid lg:grid-cols-3 gap-8">
             <!-- Cart Items -->
-                <!-- Ліва частина: список товарів -->
                 <div class="lg:col-span-2 space-y-4">
                     {% for item in cart %}
                     <div class="flex justify-between items-center border-b pb-4">
-                        <img src="{{ item.product.image }}" alt="{{ item.product.title }}"
+                        <img src="{{ item.product.image.url }}" alt="{{ item.product.title }}"
                             class="w-24 h-24 object-cover rounded-md"
                             style="width: 6rem; height: 6rem;"/>
                         
-                        <div class="flex-1">
+                        <div class="flex-1 ml-4">
                             <div class="flex justify-between items-start">
                                 <div>
                                     <p class="font-body text-xs text-muted-foreground uppercase">
@@ -110,7 +109,7 @@
                         </button>
                     </form>
 
-                    <a href="{% url 'product_list' %}"
+                    <a href="{% url 'catalog' %}"
                         class="block text-center mt-4 font-body text-sm text-muted-foreground hover:text-foreground transition-colors">
                         Продовжити покупки
                     </a>
@@ -125,7 +124,7 @@
         <p class="font-body text-muted-foreground mb-8">
             Додайте товари до кошика, щоб оформити замовлення
         </p>
-        <a href="{% url 'product_list' %}"
+        <a href="{% url 'catalog' %}"
             class="font-body text-muted-foreground mb-8 hover:text-foreground transition-colors">
             Перейти до каталогу
         </a>
@@ -138,7 +137,7 @@
         toasts.forEach((toast) => {
             setTimeout(() => {
                 toast.classList.add("animate-fade-out");
-            }, 3000); // зникне через 3 секунди
+            }, 3000);
         });
     });
 </script>

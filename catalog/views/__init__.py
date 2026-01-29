@@ -1,1 +1,1 @@
-
+from .product import  product_detail, catalog_view

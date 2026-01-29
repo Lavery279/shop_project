@@ -2,11 +2,12 @@ from django.db import models
 from django.urls import reverse
 import uuid
 from django.contrib.auth.models import User
+from django.db.models import Avg, Count
 
 
 class Category(models.Model):
     name = models.CharField(max_length=255, verbose_name="Назва категорії")
-    slug = models.SlugField(unique=True, null=True, verbose_name="Слаг")
+    slug = models.SlugField(unique=True, blank=True, verbose_name="Слаг")
 
     def save(self, *args, **kwargs):
         if not self.slug:
@@ -41,13 +42,19 @@ class Product(models.Model):
         verbose_name="Категорія",
     )
     description = models.TextField(verbose_name="Опис продукту")
-    image = models.CharField(
-        max_length=512, null=True, blank=True, verbose_name="Зображення"
+    image = models.ImageField(
+        upload_to="images/", null=True, blank=True, verbose_name="Зображення"
     )
     count = models.IntegerField(default=0, verbose_name="Кількість на складі")
 
     def __str__(self):
         return self.title
+
+    def average_rating(self):
+        return self.reviews.aggregate(avg=Avg("rating"))["avg"] or 0
+
+    def rating_count(self):
+        return self.reviews.aggregate(count=Count("id"))["count"] or 0
 
     class Meta:
         verbose_name = "Продукт"

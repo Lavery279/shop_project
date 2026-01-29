@@ -28,7 +28,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("IS_PRODUCTION") == 'False'
 
-ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "").split(',')
+ALLOWED_HOSTS = [os.getenv("ALLOWED_HOSTS")] if os.getenv("IS_PRODUCTION") == 'True' else []
 
 
 # Application definition
@@ -138,8 +138,12 @@ LOCALE_PATHS = [os.path.join(BASE_DIR, "locale")]
 STATIC_URL = 'static/'
 
 STATICFILES_DIRS = [
-    BASE_DIR / "frontend" / "vite-project" / "dist",
+    BASE_DIR / "static",
+    BASE_DIR / '..' / 'frontend' / 'vite-project' / 'dist',
 ]
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 from django.templatetags.static import static
 from django.urls import reverse_lazy
