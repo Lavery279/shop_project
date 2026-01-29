@@ -101,7 +101,7 @@
                     <div class="space-y-3 mb-6">
                         {% for item in cart %}
                         <div class="flex gap-3">
-                            <img src="{{ item.product.image }}" alt="{{ item.product.title }}"
+                            <img src="{{ item.product.image.url }}" alt="{{ item.product.title }}"
                                 class="w-12 h-12 object-cover rounded" style="width: 3rem; height: 3rem;" />
                             <div class="flex-1 min-w-0">
                                 <p class="font-body text-sm text-foreground truncate">{{ item.product.title }}
