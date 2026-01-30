@@ -4,9 +4,11 @@ from catalog.views.product import catalog_view, product_detail
 from catalog.views.about import about_view, contacts_view
 from catalog.views.cart import add_to_cart, cart_detail, remove_from_cart, update_cart
 from catalog.views.order import checkout
-from catalog.views.user import register_view, login_view
+from catalog.views.user import register_view, login_view, profile_view
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.auth.views import LogoutView
+
 
 urlpatterns = [
     path("", home, name="home"),
@@ -21,4 +23,6 @@ urlpatterns = [
     path("products/", catalog_view, name="catalog"),
     path("login/", login_view, name="login"),
     path("register/", register_view, name="register"),
+    path("profile/", profile_view, name="profile"),
+    path("logout/", LogoutView.as_view(next_page="home"), name="logout"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

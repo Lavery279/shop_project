@@ -1,0 +1,37 @@
+[
+  {
+    "model": "catalog.orderstatus",
+    "fields": {
+      "code": "pending",
+      "label": "Очікує"
+    }
+  },
+  {
+    "model": "catalog.orderstatus",
+    "fields": {
+      "code": "processing",
+      "label": "В обробці"
+    }
+  },
+  {
+    "model": "catalog.orderstatus",
+    "fields": {
+      "code": "shipped",
+      "label": "Відправлено"
+    }
+  },
+  {
+    "model": "catalog.orderstatus",
+    "fields": {
+      "code": "delivered",
+      "label": "Доставлено"
+    }
+  },
+  {
+    "model": "catalog.orderstatus",
+    "fields": {
+      "code": "cancelled",
+      "label": "Скасовано"
+    }
+  }
+]

@@ -1,0 +1,44 @@
+[
+  {
+    "model": "catalog.category",
+    "fields": {
+      "name": "Вази",
+      "slug": "vazy"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "fields": {
+      "name": "Посуд",
+      "slug": "posud"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "fields": {
+      "name": "Текстиль",
+      "slug": "tekstyl"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "fields": {
+      "name": "Декор",
+      "slug": "dekor"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "fields": {
+      "name": "Світло",
+      "slug": "svitlo"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "fields": {
+      "name": "Аксесуари",
+      "slug": "aksesuary"
+    }
+  }
+]

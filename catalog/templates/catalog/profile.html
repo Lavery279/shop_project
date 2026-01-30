@@ -1,0 +1,96 @@
+{% extends "catalog/base.html" %}
+
+{% block content %}
+<div class="container mx-auto px-6 py-4">
+    <div class="container px-6 pt-24 pb-16">
+        <div class="max-w-4xl mx-auto">
+
+            <!-- User Info -->
+            <div class="flex items-center justify-between mb-8">
+                <div class="flex items-center gap-4">
+                    <div class="w-16 h-16 rounded-full bg-secondary flex items-center justify-center">
+                        <svg class="w-8 h-8 text-muted-foreground" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M5.121 17.804A9 9 0 1118.879 17.804M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h1 class="font-display text-2xl font-medium text-foreground">Мій профіль</h1>
+                        <p class="font-body text-muted-foreground">{{ request.user.email }}</p>
+                    </div>
+                </div>
+                <a href="{% url 'logout' %}"
+                    class="font-body border rounded-md px-3 py-2 hover:bg-secondary transition">
+                    Вийти
+                </a>
+            </div>
+
+            <!-- Orders Section -->
+            <div>
+                <h2 class="font-display text-xl font-medium text-foreground mb-6">Мої замовлення</h2>
+
+                {% if orders %}
+                <div class="space-y-4">
+                    {% for order in orders %}
+                    <div class="border rounded-lg p-4">
+                        <div class="flex items-center justify-between flex-wrap gap-2 mb-2">
+                            <h3 class="font-display text-lg">
+                                Замовлення #{{ order.id|slice:":8"|upper }}
+                            </h3>
+                            <span class="font-body text-sm px-2 py-1 rounded
+                    {% if order.status == 'pending' %} bg-gray-200
+                    {% elif order.status == 'processing' %} bg-blue-200
+                    {% elif order.status == 'shipped' %} bg-yellow-200
+                    {% elif order.status == 'delivered' %} bg-green-200
+                    {% elif order.status == 'cancelled' %} bg-red-200
+                    {% endif %}">
+                                {{ order.get_status_display }}
+                            </span>
+                        </div>
+                        <p class="font-body text-sm text-muted-foreground">
+                            {{ order.created_at|date:"d E Y, H:i" }}
+                        </p>
+
+                        <!-- Order Items -->
+                        <div class="space-y-3 my-4">
+                            {% for item in order.items.all %}
+                            <div class="flex gap-3">
+                                {% if item.product_image %}
+                                <img src="{{ item.product_image.url }}" alt="{{ item.product_name }}"
+                                    class="w-12 h-12 object-cover rounded" />
+                                {% endif %}
+                                <div class="flex-1 min-w-0">
+                                    <p class="font-body text-sm text-foreground truncate">{{ item.product_name }}</p>
+                                    <p class="font-body text-xs text-muted-foreground">
+                                        {{ item.quantity }} x {{ item.price }} ₴
+                                    </p>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+
+                        <div class="flex items-center justify-between pt-3 border-t border-border">
+                            <div class="font-body text-sm text-muted-foreground">
+                                {{ order.shipping_address.city }}, {{ order.shipping_address.address }}
+                            </div>
+                            <div class="font-body font-medium text-foreground">
+                                {{ order.total_amount }} ₴
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <div class="border rounded-lg p-8 text-center">
+                    <p class="font-body text-muted-foreground mb-4">У вас ще немає замовлень</p>
+                    <a href="{% url 'catalog' %}" class="px-4 py-2 bg-primary text-white rounded hover:bg-primary/90">
+                        Перейти до каталогу
+                    </a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

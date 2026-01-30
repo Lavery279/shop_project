@@ -98,6 +98,8 @@ DATABASES = {
 # Password validation
 # https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators
 
+AUTH_USER_MODEL = "catalog.CustomUser"
+
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -131,6 +133,9 @@ LANGUAGES = [
     ("en", "English"),
 ]
 LOCALE_PATHS = [os.path.join(BASE_DIR, "locale")]
+LOGOUT_REDIRECT_URL = "home"
+LOGIN_REDIRECT_URL = "profile"
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
@@ -139,7 +144,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATICFILES_DIRS = [
-    BASE_DIR / "shop/catalog/static",
+    BASE_DIR / "catalog/static",
 ]
 
 MEDIA_URL = '/media/'
