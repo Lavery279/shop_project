@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Product, Category, Review, Order, OrderItem, OrderStatus
+from .models import CustomUser, Product, Category, Review, Order, OrderItem, OrderStatus
 from unfold.admin import ModelAdmin
 from django.utils.html import format_html
 from django.urls import reverse
@@ -120,3 +120,9 @@ class OrderItemAdmin(ModelAdmin):
     list_display = ["order", "product_preview", "quantity", "price", "get_total"]
     list_filter = ["order", "product"]
     product_preview.short_description = "Продукт"
+
+
+@admin.register(CustomUser)
+class CustomUserAdmin(ModelAdmin):
+    list_display = ("username", "email", "id")
+    search_fields = ("username", "email")

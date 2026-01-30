@@ -6,3 +6,4 @@ node==1.2.3
 pillow==12.1.0
 python-dotenv==1.2.1
 requests==2.32.5
+shortuuid-1.0.13

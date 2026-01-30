@@ -5,6 +5,7 @@ import uuid
 from django.db.models import Avg, Count
 from django.utils.text import slugify
 from django.contrib.auth.models import AbstractUser
+import shortuuid
 
 
 class CustomUser(AbstractUser):
@@ -98,10 +99,28 @@ class Review(models.Model):
         verbose_name_plural = "Відгуки"
 
 
+def generate_short_uuid():
+    return shortuuid.uuid()
+
+
+def get_default_status():
+    return OrderStatus.objects.get(code="pending").id
+
+
 class Order(models.Model):
+    id = models.CharField(
+        primary_key=True,
+        max_length=22,
+        default=generate_short_uuid,
+        editable=False,
+        verbose_name="Зовнішній ID",
+    )
+
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
         related_name="orders",
         verbose_name="Користувач",
     )
@@ -133,7 +152,7 @@ class Order(models.Model):
         on_delete=models.PROTECT,
         related_name="orders",
         verbose_name="Статус",
-        default="a06eb166f8b042d8b0f5e291153f1293",
+        default=get_default_status,
     )
     created = models.DateTimeField(auto_now_add=True, verbose_name="Дата створення")
 

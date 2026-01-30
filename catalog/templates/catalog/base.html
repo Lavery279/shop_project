@@ -23,18 +23,28 @@
         
                     <!-- Desktop Navigation -->
                     <nav class="hidden md:flex items-center gap-8">
-                        <a href="/products" class="font-body text-sm text-muted-foreground hover:text-black transition-colors">Каталог</a>
+                        <a href="{% url 'catalog' %}" class="font-body text-sm text-muted-foreground hover:text-black transition-colors">Каталог</a>
                         <a href="{% url 'about' %}" class="font-body text-sm text-muted-foreground hover:text-black transition-colors">Про нас</a>
-                        <a href="/contacts" class="font-body text-sm text-muted-foreground hover:text-black transition-colors">Контакти</a>
+                        <a href="{% url 'contacts' %}" class="font-body text-sm text-muted-foreground hover:text-black transition-colors">Контакти</a>
                     </nav>
         
                     <!-- Actions -->
                     <div class="flex items-center gap-2">
         
                         <!-- User -->
-                        <a href="/auth" class="p-2 hover:bg-secondary rounded-full transition-colors">
-                            <span class="material-icons">person</span>
-                        </a>
+                        {% if request.user.is_authenticated %}
+                        <span>Привіт, {{ user.username }}!</span>
+                            <a href="{% url 'profile' %}" class="p-2 hover:bg-secondary rounded-full transition-colors">
+                                <span class="material-icons">person</span>
+                            </a>
+                            <a href="{% url 'logout' %}">
+                                <span class="material-icons">logout</span>
+                            </a>
+                        {% else %}
+                            <a href="{% url 'login' %}" class="p-2 hover:bg-secondary rounded-full transition-colors">
+                                <span class="material-icons">person</span>
+                            </a>
+                        {% endif %}
         
                         <!-- Cart -->
                         <a href="/cart" class="relative p-2 hover:bg-secondary rounded-full transition-colors">

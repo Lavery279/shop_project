@@ -38,13 +38,59 @@
                         </div>
                         <div class="space-y-2">
                             <label for="phone" class="font-body">Телефон</label>
-                            <input type="text" name="phone" id="phone" class="font-body w-full border rounded p-2"
-                                placeholder="+380" required>
+                            <input type="text" name="phone" id="phone"
+                                class="font-body w-full border rounded p-2"
+                                placeholder="+380 __-___-____" required>
+                            <script>
+                                const phoneInput = document.getElementById('phone');
+
+                                phoneInput.addEventListener('input', function (e) {
+                                    let digits = e.target.value.replace(/\D/g, '');
+
+                                    // якщо користувач вже ввів 380 — прибираємо його
+                                    if (digits.startsWith('380')) {
+                                        digits = digits.slice(3);
+                                    }
+
+                                    // обмежуємо до 9 цифр після 380
+                                    digits = digits.slice(0, 9);
+
+                                    // формуємо формат: +380 XX-XXX-XXXX
+                                    let formatted = '+380 ';
+                                    if (digits.length > 0) formatted += digits.slice(0, 2);
+                                    if (digits.length > 2) formatted += '-' + digits.slice(2, 5);
+                                    if (digits.length > 5) formatted += '-' + digits.slice(5, 9);
+
+                                    e.target.value = formatted;
+                                });
+
+                                // блокуємо видалення префікса
+                                phoneInput.addEventListener('keydown', function (e) {
+                                    if (phoneInput.selectionStart < 5 && (e.key === 'Backspace' || e.key === 'Delete')) {
+                                        e.preventDefault();
+                                    }
+                                });
+                            </script>
+
+                            {% if form.phone.errors %}
+                            <div class="text-red-700 text-sm">
+                                {% for error in form.phone.errors %}
+                                {{ error }}
+                                {% endfor %}
+                            </div>
+                            {% endif %}
                         </div>
                         <div class="space-y-2">
                             <label for="email" class="font-body">Email</label>
                             <input type="email" name="email" id="email" class="font-body w-full border rounded p-2"
-                                required>
+                                placeholder="example@email.com" required>
+                                {% if form.email.errors %}
+                                <div class="text-red-700 text-sm">
+                                    {% for error in form.email.errors %}
+                                    {{ error }}
+                                    {% endfor %}
+                                </div>
+                                {% endif %}
                         </div>
                     </div>
                 </div>

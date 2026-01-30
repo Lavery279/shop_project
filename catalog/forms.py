@@ -1,10 +1,25 @@
 from django import forms
-from .models import Review
+from .models import Review, Order
+import re
 
 
 class LoginForm(forms.Form):
     email = forms.EmailField(label="Email")
     password = forms.CharField(widget=forms.PasswordInput, label="Пароль")
+
+    def clean(self):
+        cleaned_data = super().clean()
+        username = cleaned_data.get("username")
+        password = cleaned_data.get("password")
+
+        if username and password:
+            user = authenticate(username=username, password=password)
+            if user is None:
+                raise forms.ValidationError("Невірний логін або пароль.")
+            else:
+                cleaned_data["user"] = user
+
+        return cleaned_data
 
 
 class RegisterForm(forms.Form):
@@ -14,14 +29,26 @@ class RegisterForm(forms.Form):
         widget=forms.PasswordInput, label="Підтвердження паролю"
     )
 
-    def clean(self):
-        cleaned_data = super().clean()
-        password = cleaned_data.get("password")
-        confirm_password = cleaned_data.get("confirm_password")
+    def clean_email(self):
+        email = self.cleaned_data.get("email")
+        pattern = r"^[\w\.-]+@[\w\.-]+\.\w+$"
+        if not re.match(pattern, email):
+            raise forms.ValidationError("Email має бути у форматі name@example.com")
+        return email
 
-        if password and confirm_password and password != confirm_password:
-            self.add_error("confirm_password", "Паролі не співпадають")
-        return cleaned_data
+    def clean_password(self):
+        password = self.cleaned_data.get("password")
+
+        if len(password) < 6:
+            raise forms.ValidationError("Пароль має містити щонайменше 6 символів.")
+
+        if not re.search(r"[A-Za-z]", password):
+            raise forms.ValidationError("Пароль має містити хоча б одну літеру.")
+
+        if not re.search(r"\d", password):
+            raise forms.ValidationError("Пароль має містити хоча б одну цифру.")
+
+        return password
 
 
 class ReviewForm(forms.ModelForm):
@@ -51,9 +78,44 @@ class ReviewForm(forms.ModelForm):
         cleaned_data = super().clean()
         rating = cleaned_data.get("rating")
         comment = cleaned_data.get("comment")
-        
+
         if rating == 1 and len(comment) < 20:
             self.add_error(
                 "comment", "Для оцінки 1 бажано написати детальніший коментар."
             )
         return cleaned_data
+
+
+class CheckoutForm(forms.ModelForm):
+    class Meta:
+        model = Order
+        fields = [
+            "first_name",
+            "last_name",
+            "phone",
+            "email",
+            "city",
+            "address",
+            "delivery_method",
+            "payment_method",
+        ]
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        for field in self.fields.values():
+            field.required = True
+
+    def clean_email(self):
+        email = self.cleaned_data.get("email")
+        pattern = r"^[\w\.-]+@[\w\.-]+\.\w+$"
+        if not re.match(pattern, email):
+            raise forms.ValidationError("Email має бути у форматі name@example.com")
+        return email
+
+    def clean_phone(self):
+        phone = self.cleaned_data.get("phone")
+        pattern = r"^\+380 \d{2}-\d{3}-\d{4}$"
+        if not re.match(pattern, phone):
+            raise forms.ValidationError("Телефон має бути у форматі +380 XX-XXX-XXXX")
+        return phone

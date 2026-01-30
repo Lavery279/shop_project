@@ -43,3 +43,11 @@
 .read-the-docs {
     color: #888;
 }
+
+.message {
+    transition: opacity 1s ease-out;
+}
+
+.message.hide {
+    opacity: 0;
+}
