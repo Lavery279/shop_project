@@ -11,7 +11,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path("", home, name="home"),
-    path("products/<uuid:pk>/", product_detail, name="product_detail"),
+    path("product/<uuid:pk>/", product_detail, name="product_detail"),
     path("about/", about_view, name="about"),
     path("contacts/", contacts_view, name="contacts"),
     path("cart/add/<uuid:product_id>/", add_to_cart, name="add_to_cart"),

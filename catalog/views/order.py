@@ -16,7 +16,9 @@ def checkout(request):
         if form.is_valid():
             order = form.save(commit=False)
             order.user = request.user if request.user.is_authenticated else None
-            order.status = OrderStatus.objects.get(code="pending")
+            order.status, _ = OrderStatus.objects.get_or_create(
+                code="pending", defaults={"label": "Очікує"}
+            )
             order.save()
 
             for item in cart:
@@ -41,7 +43,7 @@ def checkout(request):
                     "form": form,
                 },
             )
-
+        
     return render(
         request,
         "catalog/checkout.html",

@@ -1,6 +1,7 @@
 from django import forms
-from .models import Review, Order
+from .models import Review, Order, CustomUser
 import re
+from django.contrib.auth import authenticate
 
 
 class LoginForm(forms.Form):
@@ -9,15 +10,17 @@ class LoginForm(forms.Form):
 
     def clean(self):
         cleaned_data = super().clean()
-        username = cleaned_data.get("username")
+        email = cleaned_data.get("email")
         password = cleaned_data.get("password")
 
-        if username and password:
-            user = authenticate(username=username, password=password)
+        if email and password:
+            if not CustomUser.objects.filter(username=email).exists():
+                raise forms.ValidationError("Користувача з такою поштою не знайдено.")
+
+            user = authenticate(username=email, password=password)
             if user is None:
-                raise forms.ValidationError("Невірний логін або пароль.")
-            else:
-                cleaned_data["user"] = user
+                raise forms.ValidationError("Невірний пароль.")
+            cleaned_data["user"] = user
 
         return cleaned_data
 
@@ -25,9 +28,6 @@ class LoginForm(forms.Form):
 class RegisterForm(forms.Form):
     email = forms.EmailField(label="Email")
     password = forms.CharField(widget=forms.PasswordInput, label="Пароль")
-    confirm_password = forms.CharField(
-        widget=forms.PasswordInput, label="Підтвердження паролю"
-    )
 
     def clean_email(self):
         email = self.cleaned_data.get("email")
@@ -56,8 +56,17 @@ class ReviewForm(forms.ModelForm):
         model = Review
         fields = ["rating", "comment"]
         widgets = {
-            "rating": forms.RadioSelect(choices=[(i, "★" * i) for i in range(1, 6)]),
-            "comment": forms.Textarea(attrs={"rows": 4}),
+            "rating": forms.RadioSelect(
+                choices=[(i, "★" * i) for i in range(1, 6)],
+                attrs={"class": "flex gap-2"},
+            ),
+            "comment": forms.Textarea(
+                attrs={
+                    "rows": 4,
+                    "cols": 25,
+                    "class": "w-full resize-none rounded-lg border border-gray-300 p-3 text-sm focus:ring-2 focus:ring-primary",
+                }
+            ),
         }
 
     def clean_rating(self):

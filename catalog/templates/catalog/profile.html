@@ -1,7 +1,7 @@
 {% extends "catalog/base.html" %}
 
 {% block content %}
-<div class="container mx-auto px-6 py-4">
+<div class="container mx-auto px-16 py-4">
     <div class="container px-6 pt-24 pb-16">
         <div class="max-w-4xl mx-auto">
 
@@ -39,13 +39,13 @@
                                 Замовлення #{{ order.id|slice:":8"|upper }}
                             </h3>
                             <span class="font-medium border border-muted-foreground text-sm px-2 py-1 rounded
-                    {% if order.status == 'pending' %} bg-gray-200
-                    {% elif order.status == 'processing' %} bg-blue-200
-                    {% elif order.status == 'shipped' %} bg-yellow-200
-                    {% elif order.status == 'delivered' %} bg-green-200
-                    {% elif order.status == 'cancelled' %} bg-red-200
-                    {% endif %}">
-                                {{ order.get_status_display }}
+                                {% if order.status.code == 'pending' %} bg-gray-200
+                                {% elif order.status.code == 'processing' %} bg-blue-200
+                                {% elif order.status.code == 'shipped' %} bg-yellow-200
+                                {% elif order.status.code == 'delivered' %} bg-green-200
+                                {% elif order.status.code == 'cancelled' %} bg-red-200
+                                {% endif %}">
+                                {{ order.status.label }}
                             </span>
                         </div>
                         <p class="font-body text-sm text-muted-foreground">
@@ -56,12 +56,12 @@
                         <div class="space-y-3 my-4">
                             {% for item in order.items.all %}
                             <div class="flex gap-3">
-                                {% if item.product_image %}
-                                <img src="{{ item.product_image.url }}" alt="{{ item.product_name }}"
+                                {% if item.product.image %}
+                                <img src="{{ item.product.image.url }}" alt="{{ item.product.title }}"
                                     class="w-12 h-12 object-cover rounded" />
                                 {% endif %}
                                 <div class="flex-1 min-w-0">
-                                    <p class="font-body text-sm text-foreground truncate">{{ item.product_name }}</p>
+                                    <p class="font-body text-sm text-foreground truncate">{{ item.product.title }}</p>
                                     <p class="font-body text-xs text-muted-foreground">
                                         {{ item.quantity }} x {{ item.price }} ₴
                                     </p>
@@ -72,7 +72,7 @@
 
                         <div class="flex items-center justify-between pt-3 border-t border-border">
                             <div class="font-body text-sm text-muted-foreground">
-                                {{ order.shipping_address.city }}, {{ order.shipping_address.address }}
+                                {{ order.city }}, {{ order.address }}
                             </div>
                             <div class="font-body font-medium text-foreground">
                                 {{ order.total_amount }} ₴

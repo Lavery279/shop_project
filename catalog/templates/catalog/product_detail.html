@@ -3,7 +3,7 @@
 {% block title %}Про нас{% endblock %}
 
 {% block content %}
-<div class="container mx-auto px-6 py-4">
+<div class="container mx-auto px-16 py-4">
 
     <!-- Breadcrumb -->
     <nav class="mb-8">
@@ -110,75 +110,113 @@
         </div>
     </div>
 
-    <!-- Related Products -->
-    {% if related_products %}
-    <section>
-        <h2 class="font-display text-2xl text-foreground mb-8">Схожі товари</h2>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {% for p in related_products %}
-            <a href="{% url 'product_detail' p.id %}" class="group">
-                <div class="aspect-square overflow-hidden rounded-lg bg-secondary mb-3">
-                    <img src="{{ p.image.url }}" alt="{{ p.title }}"
-                        class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
+    <section class="border-t border-border pt-12 mt-12">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+            <h2 class="font-display text-2xl text-foreground">
+                Відгуки ({{ reviews|length }})
+            </h2>
+            {% if reviews %}
+            <div class="flex items-center gap-3">
+                {% for i in "12345" %}
+                {% if i|add:"0" <= average_rating %} <span class="material-icons w-3.5 h-3.5 text-yellow-400" viewBox="0 0 24 24">
+                    star_rate
+                    </span>
+                    {% else %}
+                    <span class="material-icons w-3.5 h-3.5 fill-gray-300 text-gray-300 " viewBox="0 0 24 24">
+                        star_rate
+                    </span>
+                    {% endif %}
+                    {% endfor %}
+                <span class="font-body text-muted-foreground">
+                    {{ average_rating|floatformat:1 }} з 5
+                </span>
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Review Form -->
+        <div class="bg-secondary/50 rounded-xl">
+            <h3 class="font-display text-lg text-foreground mb-4">Залишити відгук</h3>
+            {% if user.is_authenticated %}
+            <form method="post" class="space-y-4">
+                {% csrf_token %}
+                <div>
+                    <label class="font-body text-sm text-foreground block mb-2">Ваша оцінка</label>
+                    <div id="star-rating" class="flex gap-1">
+                        {% for i in "12345" %}
+                        <input type="radio" name="rating" value="{{ forloop.counter }}" id="star{{ forloop.counter }}"
+                            class="hidden">
+                        <label for="star{{ forloop.counter }}" class="cursor-pointer">
+                            <span class="material-icons star w-6 h-6 text-gray-300 transition-colors"
+                                data-value="{{ forloop.counter }}">
+                                star_rate
+                            </span>
+                        </label>
+                        {% endfor %}
+                    </div>
+                    {% if form.rating.errors %}
+                    <p class="text-sm text-destructive">{{ form.rating.errors.0 }}</p>
+                    {% endif %}
                 </div>
-                <p class="font-body text-xs text-muted-foreground uppercase tracking-wider">
-                    {{ p.category.name }}
-                </p>
-                <h3 class="font-display text-foreground group-hover:text-primary transition-colors">
-                    {{ p.title }}
-                </h3>
-                <p class="font-body text-sm font-medium">
-                    {{ p.price }} ₴
-                </p>
-            </a>
-            {% endfor %}
-        </div>
-    </section>
-    {% endif %}
 
+                <script>
+                    document.addEventListener("DOMContentLoaded", function () {
+                        const stars = document.querySelectorAll("#star-rating .star");
+                        let selectedValue = 0;
 
-</div>
-<section class="border-t border-border pt-12 mt-12">
-    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
-        <h2 class="font-display text-2xl text-foreground">
-            Відгуки ({{ reviews|length }})
-        </h2>
-        {% if reviews %}
-        <div class="flex items-center gap-2">
-            {% include "catalog/star_rating.html" with rating=average_rating|floatformat:0 %}
-            <span class="font-body text-muted-foreground">
-                {{ average_rating|floatformat:1 }} з 5
-            </span>
-        </div>
-        {% endif %}
-    </div>
+                        function highlightStars(value) {
+                            stars.forEach(star => {
+                                const starValue = parseInt(star.dataset.value);
+                                if (starValue <= value) {
+                                    star.classList.add("text-yellow-400", "fill-yellow-400");
+                                    star.classList.remove("text-gray-300", "fill-gray-300");
+                                } else {
+                                    star.classList.add("text-gray-300", "fill-gray-300");
+                                    star.classList.remove("text-yellow-400", "fill-yellow-400");
+                                }
+                            });
+                        }
 
-    <!-- Review Form -->
-    <div class="bg-secondary/50 rounded-xl p-6 mb-8">
-        <h3 class="font-display text-lg text-foreground mb-4">Залишити відгук</h3>
-        {% if user.is_authenticated %}
-        <form method="post" class="space-y-4">
-            {% csrf_token %}
-            <div>
-                <label class="font-body text-sm text-foreground block mb-2">Ваша оцінка</label>
-                {{ form.rating }}
+                        stars.forEach(star => {
+                            star.addEventListener("mouseover", () => {
+                                highlightStars(parseInt(star.dataset.value));
+                            });
+                            star.addEventListener("mouseout", () => {
+                                highlightStars(selectedValue);
+                            });
+                            star.addEventListener("click", () => {
+                                selectedValue = parseInt(star.dataset.value);
+                                document.querySelector(`#star${selectedValue}`).checked = true;
+                                highlightStars(selectedValue);
+                            });
+                        });
+                    });
+                </script>
                 {% if form.rating.errors %}
                 <p class="text-sm text-destructive">{{ form.rating.errors.0 }}</p>
                 {% endif %}
+        </div>
+
+        <div class="mb-6">
+            <label for="id_comment" class="font-body text-sm text-foreground block mb-2">
+                Ваш коментар
+            </label>
+            {{ form.comment }}
+            {% if form.comment.errors %}
+            <div class="mt-2 space-y-1">
+                {% for error in form.comment.errors %}
+                <p class="text-sm text-red-600">{{ error }}</p>
+                {% endfor %}
             </div>
-            <div>
-                <label class="font-body text-sm text-foreground block mb-2">Ваш коментар</label>
-                {{ form.comment }}
-                {% if form.comment.errors %}
-                <p class="text-sm text-destructive">{{ form.comment.errors.0 }}</p>
-                {% endif %}
-                {% if form.comment.errors %}
-                <p class="text-sm text-destructive">{{ form.comment.errors.0 }}</p>
-                {% endif %}
-            </div>
-            <button type="submit" class="btn w-full" {% if is_submitting %}disabled{% endif %}>
-                "is_submitting": request.method == "POST"
+            {% endif %}
+        </div>
+        <div class="flex justify-center">
+            <button type="submit"
+                class=" font-body border border-border rounded-md px-3 py-2 bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
+                {% if is_submitting %}disabled{% endif %}>
+                Надіслати
             </button>
+        </div>
         </form>
         {% else %}
         <div class="text-center py-4">
@@ -186,51 +224,62 @@
                 Щоб залишити відгук, потрібно увійти в акаунт
             </p>
             <a href="{% url 'login' %}">
-                <button class="btn btn-outline">Увійти</button>
+                <button
+                    class="bg-primary text-primary-foreground rounded p-2 shadow hover:bg-primary/80">Увійти</button>
             </a>
         </div>
         {% endif %}
-    </div>
 
-    <!-- Reviews List -->
-    {% if reviews %}
-    <div class="space-y-6">
-        {% for review in reviews %}
-        <div class="border-b border-border pb-6 {% if forloop.last %}border-0{% endif %}">
-            <div class="flex items-start gap-4">
-                <div class="w-10 h-10 rounded-full bg-secondary flex items-center justify-center flex-shrink-0">
+        <!-- Reviews List -->
+        {% if reviews %}
+        <div class="space-y-6">
+            {% for review in reviews %}
+            <div class="border-b border-border pb-6 {% if forloop.last %}border-0{% endif %}">
+                <div class="flex items-start gap-4">
+                    <div class="w-10 h-10 rounded-full bg-secondary flex items-center justify-center flex-shrink-0">
 
-                    <svg class="w-5 h-5 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M5.121 17.804A9 9 0 1118.879 17.804M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                    </svg>
-                </div>
-                <div class="flex-1">
-                    <div class="flex flex-col sm:flex-row sm:items-center gap-2 mb-2">
-                        <span class="font-body font-medium text-foreground">
-                            {{ review.user.username }}
-                        </span>
-                        <div class="flex items-center gap-2">
-                            {% include "catalog/star_rating.html" with rating=review.rating %}
-                            <span class="font-body text-xs text-muted-foreground">
-                                {{ review.created|date:"d.m.Y H:i" }}
+                        <svg class="w-5 h-5 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M5.121 17.804A9 9 0 1118.879 17.804M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                    </div>
+                    <div class="flex-1">
+                        <div class="flex flex-col sm:flex-row sm:items-center gap-2 mb-2">
+                            <span class="font-body font-medium text-foreground">
+                                {{ review.user.username }}
                             </span>
+                            <div class="flex items-center gap-1">
+                                {% for i in "12345" %}
+                                    {% if i|add:"0" <= review.rating %}
+                                        <span class="material-icons text-yellow-400 text-sm">star_rate</span>
+                                    {% else %}
+                                        <span class="material-icons text-gray-300 text-sm">star_rate</span>
+                                    {% endif %}
+                                {% endfor %}
+                                    <span class="text-xs text-muted-foreground ml-1">
+                                        {{ review.rating }} з 5
+                                    </span>
+                            </div>
+                                <span class="font-body text-xs text-muted-foreground">
+                                    {{ review.created|date:"d.m.Y H:i" }}
+                                </span>
+                            </div>
+                            <p class="font-body text-muted-foreground leading-relaxed">
+                            {{ review.comment }}
+                            </p>
                         </div>
                     </div>
-                    <p class="font-body text-muted-foreground leading-relaxed">
-                        {{ review.comment }}
-                    </p>
                 </div>
-            </div>
+            {% endfor %}
+        {% else %}
         </div>
-        {% endfor %}
-    </div>
-    {% else %}
-    <div class="text-center py-8">
-        <p class="font-body text-muted-foreground">
-            Поки немає відгуків. Будьте першим!
-        </p>
-    </div>
-    {% endif %}
-</section>
+        
+        <div class="text-center py-8">
+            <p class="font-body text-muted-foreground">
+                Поки немає відгуків. Будьте першим!
+            </p>
+        </div>
+        {% endif %}
+    </section>
+</div>
 {% endblock %}

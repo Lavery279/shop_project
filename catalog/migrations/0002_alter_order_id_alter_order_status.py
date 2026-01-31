@@ -17,9 +17,4 @@ class Migration(migrations.Migration):
             name='id',
             field=models.CharField(default=catalog.models.generate_short_uuid, editable=False, max_length=22, primary_key=True, serialize=False, verbose_name='Зовнішній ID'),
         ),
-        migrations.AlterField(
-            model_name='order',
-            name='status',
-            field=models.ForeignKey(default=catalog.models.get_default_status, on_delete=django.db.models.deletion.PROTECT, related_name='orders', to='catalog.orderstatus', verbose_name='Статус'),
-        ),
     ]

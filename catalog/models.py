@@ -72,6 +72,9 @@ class Product(models.Model):
     def rating_count(self):
         return self.reviews.aggregate(count=Count("id"))["count"] or 0
 
+    def get_absolute_url(self):
+        return reverse("product_detail", args=[str(self.id)])
+
     class Meta:
         verbose_name = "Продукт"
         verbose_name_plural = "Продукти"
@@ -101,10 +104,6 @@ class Review(models.Model):
 
 def generate_short_uuid():
     return shortuuid.uuid()
-
-
-def get_default_status():
-    return OrderStatus.objects.get(code="pending").id
 
 
 class Order(models.Model):
@@ -152,7 +151,6 @@ class Order(models.Model):
         on_delete=models.PROTECT,
         related_name="orders",
         verbose_name="Статус",
-        default=get_default_status,
     )
     created = models.DateTimeField(auto_now_add=True, verbose_name="Дата створення")
 

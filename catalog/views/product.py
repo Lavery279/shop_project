@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import redirect, render, get_object_or_404
 from catalog.models import Product, Category
 from django.core.paginator import Paginator
 from catalog.forms import ReviewForm
@@ -47,11 +47,13 @@ def product_detail(request, pk):
     reviews = product.reviews.all().order_by("-created")
 
     if request.method == "POST":
+        if not request.user.is_authenticated:
+            return redirect("login")
         form = ReviewForm(request.POST)
         if form.is_valid():
             review = form.save(commit=False)
             review.product = product
-            review.user = request.user if request.user.is_authenticated else None
+            review.user = request.user
             review.save()
             return redirect("product_detail", pk=product.pk)
     else:
