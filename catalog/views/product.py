@@ -2,16 +2,17 @@ from django.shortcuts import redirect, render, get_object_or_404
 from catalog.models import Product, Category
 from django.core.paginator import Paginator
 from catalog.forms import ReviewForm
+import re
 
 
 def catalog_view(request):
     products = Product.objects.all()
-    search = request.GET.get("search")
+    search = request.GET.get("search", "").strip()
     category = request.GET.get("category")
     sort = request.GET.get("sort")
 
     if search and len(search) >= 3:
-        products = products.filter(title__icontains=search)
+        products = Product.objects.filter(title__regex=rf"(?i){re.escape(search)}")
 
     if category:
         products = products.filter(category__slug=category)
@@ -20,8 +21,6 @@ def catalog_view(request):
         products = products.order_by("price")
     elif sort == "price_desc":
         products = products.order_by("-price")
-    elif sort == "new":
-        products = products.order_by("-created_at")
 
     paginator = Paginator(products, 16)
     page_number = request.GET.get("page")
