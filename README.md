@@ -24,6 +24,7 @@
 - Важливі пакети: `django-tailwind`, `django-unfold`, `pillow`, `python-dotenv`, `shortuuid`
 
 ## Структура проєкту
+```
 shop/
 ├── catalog/               # Основний Django-додаток
 │   ├── fixtures/          # JSON-фікстури для товарів, категорій, статусів
@@ -41,6 +42,7 @@ shop/
 ├── .gitignore             # Ігноровані файли
 ├── manage.py              # Django-менеджер
 └── requirements.txt       # Залежності Python
+```
 
 ## Швидкий старт (локально)
 1. Клонувати репозиторій і перейти в папку `shop`:
