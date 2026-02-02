@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{{ status_code }}</title>
+    <link href="{% static 'catalog/dist/assets/index-B-QsrTnE.css' %}" rel="stylesheet">
+</head>
+
+<body class="flex min-h-screen items-center justify-center bg-muted">
+    <div class="text-center">
+        <h1 class="mb-4 text-4xl font-bold">{{ status_code }}</h1>
+        <p class="mb-4 text-xl text-muted-foreground">
+            {{ message }}
+        </p>
+        <a href="{% url 'home' %}" class="text-primary underline hover:text-primary/90">
+            Повернутися на головну
+        </a>
+    </div>
+</body>
+
+</html>

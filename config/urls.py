@@ -15,11 +15,36 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from django.urls import include
+from django.urls import path, include
+from catalog.views.error import error_view
+from django.conf.urls import handler400, handler403, handler404, handler500
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", include('catalog.urls')),
 ]
+
+
+def bad_request(request, exception):
+    return error_view(request, exception, status_code=400, message="Некоректний запит")
+
+
+def permission_denied(request, exception):
+    return error_view(request, exception, status_code=403, message="Доступ заборонено")
+
+
+def page_not_found(request, exception):
+    return error_view(
+        request, exception, status_code=404, message="Сторінку не знайдено"
+    )
+
+
+def server_error(request):
+    return error_view(request, status_code=500, message="Внутрішня помилка сервера")
+
+
+handler400 = bad_request
+handler403 = permission_denied
+handler404 = page_not_found
+handler500 = server_error
