@@ -10,7 +10,6 @@ __pycache__/
 .Python
 build/
 develop-eggs/
-dist/
 downloads/
 eggs/
 .eggs/
@@ -214,6 +213,3 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
-
-#Media files
-media/

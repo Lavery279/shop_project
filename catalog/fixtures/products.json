@@ -4,7 +4,7 @@
         "fields": {
             "title": "Ваза «Терра»",
             "price": 1480.0,
-            "category": "8631ea1348584899a5c98821d261b9d1",
+            "category": "Вази",
             "description": "Велика декоративна ваза теракотового кольору. Висота 35 см.",
             "image": "images/product21.png",
             "count": 12
@@ -15,7 +15,7 @@
         "fields": {
             "title": "Керамічна піала",
             "price": 680.0,
-            "category": "522b07604f2247a796a8afdcf6f90e45",
+            "category": "Посуд",
             "description": "Ручна робота з натуральної теракотової глини. Підходить для повсякденного використання.",
             "image": "images/product17.png",
             "count": 15
@@ -26,7 +26,7 @@
         "fields": {
             "title": "Лляна подушка",
             "price": 890.0,
-            "category": "807a359ad23f4eaaa5e30f57fe7faffd",
+            "category": "Текстиль",
             "description": "100% натуральний льон. М'яка та приємна на дотик. Розмір 45x45 см.",
             "image": "images/product18.png",
             "count": 16
@@ -37,7 +37,7 @@
         "fields": {
             "title": "Ароматична свічка",
             "price": 420.0,
-            "category": "faef45f25e934afdb2247e41dc8dd60d",
+            "category": "Декор",
             "description": "Соєвий віск з ароматом ванілі та сандалу. Час горіння до 40 годин.",
             "image": "images/product19.png",
             "count": 18
@@ -48,7 +48,7 @@
         "fields": {
             "title": "Настільна лампа «Лофт»",
             "price": 1650.0,
-            "category": "716e1874212443af8ab5a9244ce5dacf",
+            "category": "Світло",
             "description": "Металева лампа з декоративним абажуром. Ідеальна для вечірнього освітлення.",
             "image": "images/product10.png",
             "count": 21
@@ -59,7 +59,7 @@
         "fields": {
             "title": "Дерев'яна рамка для фото",
             "price": 350.0,
-            "category": "18d3a438f0a94791b1e8cb003a497bde",
+            "category": "Аксесуари",
             "description": "Світле дерево, формат 10x15 см. Створює затишок у будь-якому інтер'єрі.",
             "image": "images/product14.png",
             "count": 19
@@ -70,7 +70,7 @@
         "fields": {
             "title": "Ваза «Памоас»",
             "price": 1250.0,
-            "category": "8631ea1348584899a5c98821d261b9d1",
+            "category": "Вази",
             "description": "Елегантна ваза з комбінацією кремової та теракотової глини. Ідеальна для сухоцвітів.",
             "image": "images/product2.png",
             "count": 12
@@ -81,7 +81,7 @@
         "fields": {
             "title": "Набір мисок",
             "price": 1200.0,
-            "category": "522b07604f2247a796a8afdcf6f90e45",
+            "category": "Посуд",
             "description": "Комплект з 3 керамічних мисок різного розміру. Ручна робота.",
             "image": "images/product17.png",
             "count": 14
@@ -92,7 +92,7 @@
         "fields": {
             "title": "Плед «Затишок»",
             "price": 1850.0,
-            "category": "807a359ad23f4eaaa5e30f57fe7faffd",
+            "category": "Текстиль",
             "description": "Теплий в'язаний плед з м'якої бавовни. Розмір 130x170 см.",
             "image": "images/product5.png",
             "count": 19
@@ -103,7 +103,7 @@
         "fields": {
             "title": "Підсвічник керамічний",
             "price": 320.0,
-            "category": "faef45f25e934afdb2247e41dc8dd60d",
+            "category": "Декор",
             "description": "Мінімалістичний підсвічник для чайних свічок. Ручна робота.",
             "image": "images/product9.png",
             "count": 16
@@ -114,7 +114,7 @@
         "fields": {
             "title": "Ваза «Соната»",
             "price": 1320.0,
-            "category": "8631ea1348584899a5c98821d261b9d1",
+            "category": "Вази",
             "description": "Витончена форма з матовим покриттям, підходить для сухих композицій.",
             "image": "images/product20.png",
             "count": 21
@@ -125,7 +125,7 @@
         "fields": {
             "title": "Чайний сервіз",
             "price": 1750.0,
-            "category": "522b07604f2247a796a8afdcf6f90e45",
+            "category": "Посуд",
             "description": "Набір з 4 чашок і чайника, ручна робота з глини.",
             "image": "images/product7.png",
             "count": 15
@@ -136,7 +136,7 @@
         "fields": {
             "title": "Скатертина лляна",
             "price": 960.0,
-            "category": "807a359ad23f4eaaa5e30f57fe7faffd",
+            "category": "Текстиль",
             "description": "Натуральний льон, світлий відтінок, розмір 140x200 см.",
             "image": "images/product8.png",
             "count": 18
@@ -147,7 +147,7 @@
         "fields": {
             "title": "Свічка «Медова»",
             "price": 380.0,
-            "category": "faef45f25e934afdb2247e41dc8dd60d",
+            "category": "Декор",
             "description": "Аромат меду та кориці, виготовлена з соєвого воску.",
             "image": "images/product22.png",
             "count": 23
@@ -158,7 +158,7 @@
         "fields": {
             "title": "Настінний світильник «Орбіт»",
             "price": 1420.0,
-            "category": "716e1874212443af8ab5a9244ce5dacf",
+            "category": "Світло",
             "description": "Металевий корпус, тепле світло, сучасний дизайн.",
             "image": "images/product10.png",
             "count": 13
@@ -169,7 +169,7 @@
         "fields": {
             "title": "Кошик з ротангу",
             "price": 720.0,
-            "category": "18d3a438f0a94791b1e8cb003a497bde",
+            "category": "Аксесуари",
             "description": "Ручне плетіння, ідеальний для зберігання дрібних речей.",
             "image": "images/product6.png",
             "count": 16
@@ -180,7 +180,7 @@
         "fields": {
             "title": "Ваза «Класік»",
             "price": 1100.0,
-            "category": "8631ea1348584899a5c98821d261b9d1",
+            "category": "Вази",
             "description": "Проста форма, глянцеве покриття, універсальний стиль.",
             "image": "images/product21.png",
             "count": 13
@@ -191,7 +191,7 @@
         "fields": {
             "title": "Тарілка керамічна",
             "price": 450.0,
-            "category": "522b07604f2247a796a8afdcf6f90e45",
+            "category": "Посуд",
             "description": "Глибока тарілка для супів, ручна робота.",
             "image": "images/product1.png",
             "count": 19
@@ -202,7 +202,7 @@
         "fields": {
             "title": "Покривало «Мрія»",
             "price": 1600.0,
-            "category": "807a359ad23f4eaaa5e30f57fe7faffd",
+            "category": "Текстиль",
             "description": "М'яке бавовняне покривало, розмір 200x220 см.",
             "image": "images/product5.png",
             "count": 13
@@ -213,7 +213,7 @@
         "fields": {
             "title": "Декоративна фігурка",
             "price": 520.0,
-            "category": "faef45f25e934afdb2247e41dc8dd60d",
+            "category": "Декор",
             "description": "Керамічна фігурка у формі пташки, ручна робота.",
             "image": "images/product4.png",
             "count": 25
@@ -224,7 +224,7 @@
         "fields": {
             "title": "Ваза «Аура»",
             "price": 1350.0,
-            "category": "8631ea1348584899a5c98821d261b9d1",
+            "category": "Вази",
             "description": "Матовий білий колір, мінімалістичний дизайн, висота 28 см.",
             "image": "images/product2.png",
             "count": 16
@@ -235,7 +235,7 @@
         "fields": {
             "title": "Чашка з блюдцем",
             "price": 520.0,
-            "category": "522b07604f2247a796a8afdcf6f90e45",
+            "category": "Посуд",
             "description": "Керамічна чашка з блюдцем, ручна робота, об’єм 250 мл.",
             "image": "images/product3.png",
             "count": 15
@@ -246,7 +246,7 @@
         "fields": {
             "title": "Наволочка лляна",
             "price": 430.0,
-            "category": "807a359ad23f4eaaa5e30f57fe7faffd",
+            "category": "Текстиль",
             "description": "Натуральний льон, світло-сірий відтінок, розмір 40x40 см.",
             "image": "images/product18.png",
             "count": 23
@@ -257,7 +257,7 @@
         "fields": {
             "title": "Свічка «Лісова»",
             "price": 460.0,
-            "category": "faef45f25e934afdb2247e41dc8dd60d",
+            "category": "Декор",
             "description": "Аромат хвої та деревини, соєвий віск, час горіння 30 годин.",
             "image": "images/product19.png",
             "count": 13
@@ -268,7 +268,7 @@
         "fields": {
             "title": "Торшер «Скандинавія»",
             "price": 1900.0,
-            "category": "716e1874212443af8ab5a9244ce5dacf",
+            "category": "Світло",
             "description": "Дерев’яна основа, тканинний абажур, тепле світло.",
             "image": "images/product11.png",
             "count": 19
@@ -279,7 +279,7 @@
         "fields": {
             "title": "Органайзер дерев’яний",
             "price": 780.0,
-            "category": "18d3a438f0a94791b1e8cb003a497bde",
+            "category": "Аксесуари",
             "description": "Компактний органайзер для столу, виготовлений з дуба.",
             "image": "images/product12.png",
             "count": 20
@@ -290,7 +290,7 @@
         "fields": {
             "title": "Ваза «Модерн»",
             "price": 1200.0,
-            "category": "8631ea1348584899a5c98821d261b9d1",
+            "category": "Вази",
             "description": "Глянцеве покриття, сучасна форма, висота 25 см.",
             "image": "images/product20.png",
             "count": 25
@@ -301,7 +301,7 @@
         "fields": {
             "title": "Салатниця керамічна",
             "price": 640.0,
-            "category": "522b07604f2247a796a8afdcf6f90e45",
+            "category": "Посуд",
             "description": "Глибока салатниця, ручна робота, діаметр 22 см.",
             "image": "images/product17.png",
             "count": 18
@@ -312,7 +312,7 @@
         "fields": {
             "title": "Плед «Комфорт»",
             "price": 1750.0,
-            "category": "807a359ad23f4eaaa5e30f57fe7faffd",
+            "category": "Текстиль",
             "description": "М’який плед з бавовни, розмір 150x200 см.",
             "image": "images/product5.png",
             "count": 16
@@ -323,7 +323,7 @@
         "fields": {
             "title": "Декоративна свічка «Океан»",
             "price": 500.0,
-            "category": "faef45f25e934afdb2247e41dc8dd60d",
+            "category": "Декор",
             "description": "Аромат свіжості та морського бризу, час горіння 35 годин.",
             "image": "images/product19.png",
             "count": 24
@@ -334,7 +334,7 @@
         "fields": {
             "title": "Світильник «Глобус»",
             "price": 1600.0,
-            "category": "716e1874212443af8ab5a9244ce5dacf",
+            "category": "Світло",
             "description": "Настільний світильник у формі кулі, тепле світло.",
             "image": "images/product10.png",
             "count": 13
@@ -345,7 +345,7 @@
         "fields": {
             "title": "Декоративний кошик",
             "price": 690.0,
-            "category": "18d3a438f0a94791b1e8cb003a497bde",
+            "category": "Аксесуари",
             "description": "Плетений кошик з ротангу, діаметр 30 см.",
             "image": "images/product6.png",
             "count": 21
@@ -356,7 +356,7 @@
         "fields": {
             "title": "Ваза «Елеганс»",
             "price": 1400.0,
-            "category": "8631ea1348584899a5c98821d261b9d1",
+            "category": "Вази",
             "description": "Висока ваза з матовим покриттям, висота 40 см.",
             "image": "images/product2.png",
             "count": 13
@@ -367,7 +367,7 @@
         "fields": {
             "title": "Кухоль керамічний",
             "price": 480.0,
-            "category": "522b07604f2247a796a8afdcf6f90e45",
+            "category": "Посуд",
             "description": "Кухоль ручної роботи, об’єм 300 мл.",
             "image": "images/product13.png",
             "count": 24
@@ -378,7 +378,7 @@
         "fields": {
             "title": "Скатертина «Свято»",
             "price": 1100.0,
-            "category": "807a359ad23f4eaaa5e30f57fe7faffd",
+            "category": "Текстиль",
             "description": "Лляна скатертина з вишивкою, розмір 150x220 см.",
             "image": "images/product8.png",
             "count": 13
@@ -389,7 +389,7 @@
         "fields": {
             "title": "Фігурка «Кіт»",
             "price": 550.0,
-            "category": "faef45f25e934afdb2247e41dc8dd60d",
+            "category": "Декор",
             "description": "Керамічна фігурка кота, ручна робота.",
             "image": "images/product4.png",
             "count": 21
@@ -400,7 +400,7 @@
         "fields": {
             "title": "Лампа «Ретро»",
             "price": 1450.0,
-            "category": "716e1874212443af8ab5a9244ce5dacf",
+            "category": "Світло",
             "description": "Металева лампа з вінтажним дизайном, тепле світло.",
             "image": "images/product11.png",
             "count": 25
@@ -411,7 +411,7 @@
         "fields": {
             "title": "Рамка настільна",
             "price": 360.0,
-            "category": "18d3a438f0a94791b1e8cb003a497bde",
+            "category": "Аксесуари",
             "description": "Дерев’яна рамка для фото, формат 13x18 см.",
             "image": "images/product14.png",
             "count": 10
@@ -422,7 +422,7 @@
         "fields": {
             "title": "Ваза «Гармонія»",
             "price": 1280.0,
-            "category": "8631ea1348584899a5c98821d261b9d1",
+            "category": "Вази",
             "description": "Матовий колір, плавні лінії, висота 30 см.",
             "image": "images/product21.png",
             "count": 19
@@ -433,7 +433,7 @@
         "fields": {
             "title": "Набір тарілок",
             "price": 1500.0,
-            "category": "522b07604f2247a796a8afdcf6f90e45",
+            "category": "Посуд",
             "description": "Комплект з 6 тарілок, кераміка, ручна робота.",
             "image": "images/product1.png",
             "count": 14
@@ -444,7 +444,7 @@
         "fields": {
             "title": "Ваза «Лінія»",
             "price": 1180.0,
-            "category": "8631ea1348584899a5c98821d261b9d1",
+            "category": "Вази",
             "description": "Витончена форма з вертикальними лініями, висота 32 см.",
             "image": "images/product20.png",
             "count": 13
@@ -455,7 +455,7 @@
         "fields": {
             "title": "Набір чашок",
             "price": 980.0,
-            "category": "522b07604f2247a796a8afdcf6f90e45",
+            "category": "Посуд",
             "description": "Комплект з 4 керамічних чашок, ручна робота.",
             "image": "images/product3.png",
             "count": 24
@@ -466,7 +466,7 @@
         "fields": {
             "title": "Подушка «Мрія»",
             "price": 870.0,
-            "category": "807a359ad23f4eaaa5e30f57fe7faffd",
+            "category": "Текстиль",
             "description": "М’яка подушка з льону, розмір 50x50 см.",
             "image": "images/product18.png",
             "count": 19
@@ -477,7 +477,7 @@
         "fields": {
             "title": "Свічка «Какао»",
             "price": 400.0,
-            "category": "faef45f25e934afdb2247e41dc8dd60d",
+            "category": "Декор",
             "description": "Аромат какао та ванілі, соєвий віск.",
             "image": "images/product22.png",
             "count": 22
@@ -488,7 +488,7 @@
         "fields": {
             "title": "Люстра «Модерн»",
             "price": 1950.0,
-            "category": "716e1874212443af8ab5a9244ce5dacf",
+            "category": "Світло",
             "description": "Металева люстра з трьома плафонами, сучасний стиль.",
             "image": "images/product16.png",
             "count": 21
@@ -499,7 +499,7 @@
         "fields": {
             "title": "Органайзер настільний",
             "price": 650.0,
-            "category": "18d3a438f0a94791b1e8cb003a497bde",
+            "category": "Аксесуари",
             "description": "Дерев’яний органайзер для канцелярії.",
             "image": "images/product12.png",
             "count": 10
@@ -510,7 +510,7 @@
         "fields": {
             "title": "Ваза «Класік»",
             "price": 1100.0,
-            "category": "8631ea1348584899a5c98821d261b9d1",
+            "category": "Вази",
             "description": "Проста форма, глянцеве покриття, універсальний стиль.",
             "image": "images/product2.png",
             "count": 15
@@ -521,7 +521,7 @@
         "fields": {
             "title": "Тарілка «Рустик»",
             "price": 520.0,
-            "category": "522b07604f2247a796a8afdcf6f90e45",
+            "category": "Посуд",
             "description": "Керамічна тарілка з ручним розписом.",
             "image": "images/product17.png",
             "count": 17
@@ -532,7 +532,7 @@
         "fields": {
             "title": "Плед «Тепло»",
             "price": 1700.0,
-            "category": "807a359ad23f4eaaa5e30f57fe7faffd",
+            "category": "Текстиль",
             "description": "В’язаний плед з бавовни, розмір 140x180 см.",
             "image": "images/product5.png",
             "count": 20
@@ -543,7 +543,7 @@
         "fields": {
             "title": "Декоративна свічка «Флора»",
             "price": 480.0,
-            "category": "faef45f25e934afdb2247e41dc8dd60d",
+            "category": "Декор",
             "description": "Аромат квітів, час горіння 25 годин.",
             "image": "images/product19.png",
             "count": 10
@@ -554,7 +554,7 @@
         "fields": {
             "title": "Світильник «Конус»",
             "price": 1500.0,
-            "category": "716e1874212443af8ab5a9244ce5dacf",
+            "category": "Світло",
             "description": "Настільний світильник у формі конуса, тепле світло.",
             "image": "images/product10.png",
             "count": 25
@@ -565,7 +565,7 @@
         "fields": {
             "title": "Кошик «Комфорт»",
             "price": 720.0,
-            "category": "18d3a438f0a94791b1e8cb003a497bde",
+            "category": "Аксесуари",
             "description": "Плетений кошик для зберігання речей.",
             "image": "images/product6.png",
             "count": 19
@@ -576,7 +576,7 @@
         "fields": {
             "title": "Ваза «Мінімал»",
             "price": 1250.0,
-            "category": "8631ea1348584899a5c98821d261b9d1",
+            "category": "Вази",
             "description": "Мінімалістична форма, матове покриття.",
             "image": "images/product21.png",
             "count": 14
@@ -587,7 +587,7 @@
         "fields": {
             "title": "Чайник керамічний",
             "price": 890.0,
-            "category": "522b07604f2247a796a8afdcf6f90e45",
+            "category": "Посуд",
             "description": "Керамічний чайник ручної роботи, об’єм 1 л.",
             "image": "images/product15.png",
             "count": 24
@@ -598,7 +598,7 @@
         "fields": {
             "title": "Скатертина «Затишок»",
             "price": 1150.0,
-            "category": "807a359ad23f4eaaa5e30f57fe7faffd",
+            "category": "Текстиль",
             "description": "Лляна скатертина з візерунком, розмір 140x200 см.",
             "image": "images/product8.png",
             "count": 18
@@ -609,7 +609,7 @@
         "fields": {
             "title": "Фігурка «Пташка»",
             "price": 530.0,
-            "category": "faef45f25e934afdb2247e41dc8dd60d",
+            "category": "Декор",
             "description": "Керамічна фігурка у формі пташки.",
             "image": "images/product4.png",
             "count": 15
@@ -620,7 +620,7 @@
         "fields": {
             "title": "Лампа «Індустріал»",
             "price": 1620.0,
-            "category": "716e1874212443af8ab5a9244ce5dacf",
+            "category": "Світло",
             "description": "Металева лампа з індустріальним дизайном.",
             "image": "images/product11.png",
             "count": 23
@@ -631,7 +631,7 @@
         "fields": {
             "title": "Рамка «Натуральна»",
             "price": 370.0,
-            "category": "18d3a438f0a94791b1e8cb003a497bde",
+            "category": "Аксесуари",
             "description": "Дерев’яна рамка для фото, формат 10x15 см.",
             "image": "images/product14.png",
             "count": 21
@@ -642,7 +642,7 @@
         "fields": {
             "title": "Ваза «Грація»",
             "price": 1300.0,
-            "category": "8631ea1348584899a5c98821d261b9d1",
+            "category": "Вази",
             "description": "Висока ваза з плавними лініями, висота 38 см.",
             "image": "images/product2.png",
             "count": 12
@@ -653,7 +653,7 @@
         "fields": {
             "title": "Набір піал",
             "price": 950.0,
-            "category": "522b07604f2247a796a8afdcf6f90e45",
+            "category": "Посуд",
             "description": "Комплект з 3 піал, ручна робота.",
             "image": "images/product17.png",
             "count": 11
@@ -664,7 +664,7 @@
         "fields": {
             "title": "Ваза «Сфера»",
             "price": 1280.0,
-            "category": "8631ea1348584899a5c98821d261b9d1",
+            "category": "Вази",
             "description": "Кругла форма, матове покриття, висота 20 см.",
             "image": "images/product21.png",
             "count": 18
@@ -675,7 +675,7 @@
         "fields": {
             "title": "Набір кухлів",
             "price": 990.0,
-            "category": "522b07604f2247a796a8afdcf6f90e45",
+            "category": "Посуд",
             "description": "Комплект з 4 кухлів, кераміка, ручна робота.",
             "image": "images/product13.png",
             "count": 17
@@ -686,7 +686,7 @@
         "fields": {
             "title": "Подушка «Комфорт»",
             "price": 860.0,
-            "category": "807a359ad23f4eaaa5e30f57fe7faffd",
+            "category": "Текстиль",
             "description": "М’яка подушка з бавовни, розмір 45x45 см.",
             "image": "images/product18.png",
             "count": 22
@@ -697,7 +697,7 @@
         "fields": {
             "title": "Свічка «Цитрус»",
             "price": 420.0,
-            "category": "faef45f25e934afdb2247e41dc8dd60d",
+            "category": "Декор",
             "description": "Аромат апельсина та лимону, соєвий віск.",
             "image": "images/product19.png",
             "count": 12
@@ -708,7 +708,7 @@
         "fields": {
             "title": "Настільна лампа «Елеганс»",
             "price": 1550.0,
-            "category": "716e1874212443af8ab5a9244ce5dacf",
+            "category": "Світло",
             "description": "Металева основа, тканинний абажур, сучасний дизайн.",
             "image": "images/product10.png",
             "count": 12
@@ -719,7 +719,7 @@
         "fields": {
             "title": "Органайзер «Затишок»",
             "price": 700.0,
-            "category": "18d3a438f0a94791b1e8cb003a497bde",
+            "category": "Аксесуари",
             "description": "Дерев’яний органайзер для дрібних речей.",
             "image": "images/product12.png",
             "count": 17
@@ -730,7 +730,7 @@
         "fields": {
             "title": "Ваза «Флора»",
             "price": 1200.0,
-            "category": "8631ea1348584899a5c98821d261b9d1",
+            "category": "Вази",
             "description": "Висока ваза з квітковим орнаментом, висота 35 см.",
             "image": "images/product20.png",
             "count": 14
@@ -741,7 +741,7 @@
         "fields": {
             "title": "Салатниця «Класік»",
             "price": 640.0,
-            "category": "522b07604f2247a796a8afdcf6f90e45",
+            "category": "Посуд",
             "description": "Керамічна салатниця, діаметр 24 см.",
             "image": "images/product17.png",
             "count": 22
@@ -752,7 +752,7 @@
         "fields": {
             "title": "Плед «М’якість»",
             "price": 1800.0,
-            "category": "807a359ad23f4eaaa5e30f57fe7faffd",
+            "category": "Текстиль",
             "description": "В’язаний плед з бавовни, розмір 150x200 см.",
             "image": "images/product5.png",
             "count": 25
@@ -763,7 +763,7 @@
         "fields": {
             "title": "Декоративна свічка «Роза»",
             "price": 490.0,
-            "category": "faef45f25e934afdb2247e41dc8dd60d",
+            "category": "Декор",
             "description": "Аромат троянди, час горіння 30 годин.",
             "image": "images/product19.png",
             "count": 12
@@ -774,7 +774,7 @@
         "fields": {
             "title": "Світильник «Лофт»",
             "price": 1650.0,
-            "category": "716e1874212443af8ab5a9244ce5dacf",
+            "category": "Світло",
             "description": "Металева конструкція, тепле світло, індустріальний стиль.",
             "image": "images/product11.png",
             "count": 18
@@ -785,7 +785,7 @@
         "fields": {
             "title": "Кошик «Ротанг»",
             "price": 750.0,
-            "category": "18d3a438f0a94791b1e8cb003a497bde",
+            "category": "Аксесуари",
             "description": "Плетений кошик з ротангу, діаметр 28 см.",
             "image": "images/product6.png",
             "count": 10
@@ -796,7 +796,7 @@
         "fields": {
             "title": "Ваза «Престиж»",
             "price": 1380.0,
-            "category": "8631ea1348584899a5c98821d261b9d1",
+            "category": "Вази",
             "description": "Матовий чорний колір, висота 30 см.",
             "image": "images/product21.png",
             "count": 24
@@ -807,7 +807,7 @@
         "fields": {
             "title": "Чайний набір",
             "price": 1600.0,
-            "category": "522b07604f2247a796a8afdcf6f90e45",
+            "category": "Посуд",
             "description": "Набір з чайника та 4 чашок, ручна робота.",
             "image": "images/product7.png",
             "count": 25
@@ -818,7 +818,7 @@
         "fields": {
             "title": "Скатертина «Комфорт»",
             "price": 1120.0,
-            "category": "807a359ad23f4eaaa5e30f57fe7faffd",
+            "category": "Текстиль",
             "description": "Лляна скатертина, розмір 140x200 см.",
             "image": "images/product8.png",
             "count": 15
@@ -829,7 +829,7 @@
         "fields": {
             "title": "Фігурка «Сова»",
             "price": 560.0,
-            "category": "faef45f25e934afdb2247e41dc8dd60d",
+            "category": "Декор",
             "description": "Керамічна фігурка сови, ручна робота.",
             "image": "images/product4.png",
             "count": 19
@@ -840,7 +840,7 @@
         "fields": {
             "title": "Лампа «Сонце»",
             "price": 1700.0,
-            "category": "716e1874212443af8ab5a9244ce5dacf",
+            "category": "Світло",
             "description": "Настільна лампа з жовтим абажуром, тепле світло.",
             "image": "images/product11.png",
             "count": 23
@@ -851,7 +851,7 @@
         "fields": {
             "title": "Рамка «Еко»",
             "price": 380.0,
-            "category": "18d3a438f0a94791b1e8cb003a497bde",
+            "category": "Аксесуари",
             "description": "Дерев’яна рамка для фото, формат 15x20 см.",
             "image": "images/product14.png",
             "count": 16
@@ -862,7 +862,7 @@
         "fields": {
             "title": "Ваза «Натхнення»",
             "price": 1320.0,
-            "category": "8631ea1348584899a5c98821d261b9d1",
+            "category": "Вази",
             "description": "Матовий білий колір, висота 28 см.",
             "image": "images/product21.png",
             "count": 12
@@ -873,7 +873,7 @@
         "fields": {
             "title": "Набір тарілок «Флора»",
             "price": 1450.0,
-            "category": "522b07604f2247a796a8afdcf6f90e45",
+            "category": "Посуд",
             "description": "Комплект з 6 тарілок з квітковим орнаментом.",
             "image": "images/product1.png",
             "count": 11
@@ -884,7 +884,7 @@
         "fields": {
             "title": "Ваза «Сонячна»",
             "price": 1340.0,
-            "category": "8631ea1348584899a5c98821d261b9d1",
+            "category": "Вази",
             "description": "Світлий відтінок, матове покриття, висота 28 см.",
             "image": "images/product20.png",
             "count": 14
@@ -895,7 +895,7 @@
         "fields": {
             "title": "Набір кухонних мисок",
             "price": 1150.0,
-            "category": "522b07604f2247a796a8afdcf6f90e45",
+            "category": "Посуд",
             "description": "Комплект з 3 мисок різного розміру, ручна робота.",
             "image": "images/product17.png",
             "count": 22
@@ -906,7 +906,7 @@
         "fields": {
             "title": "Подушка «Затишок»",
             "price": 880.0,
-            "category": "807a359ad23f4eaaa5e30f57fe7faffd",
+            "category": "Текстиль",
             "description": "М’яка подушка з льону, розмір 45x45 см.",
             "image": "images/product18.png",
             "count": 15
@@ -917,7 +917,7 @@
         "fields": {
             "title": "Свічка «Ваніль»",
             "price": 410.0,
-            "category": "faef45f25e934afdb2247e41dc8dd60d",
+            "category": "Декор",
             "description": "Аромат ванілі, соєвий віск, час горіння 35 годин.",
             "image": "images/product22.png",
             "count": 25
@@ -928,7 +928,7 @@
         "fields": {
             "title": "Люстра «Елеганс»",
             "price": 1850.0,
-            "category": "716e1874212443af8ab5a9244ce5dacf",
+            "category": "Світло",
             "description": "Металева люстра з тканинними абажурами, сучасний стиль.",
             "image": "images/product16.png",
             "count": 21
@@ -939,7 +939,7 @@
         "fields": {
             "title": "Органайзер «Практик»",
             "price": 720.0,
-            "category": "18d3a438f0a94791b1e8cb003a497bde",
+            "category": "Аксесуари",
             "description": "Дерев’яний органайзер для дрібних речей.",
             "image": "images/product12.png",
             "count": 10
@@ -950,7 +950,7 @@
         "fields": {
             "title": "Ваза «Мрія»",
             "price": 1260.0,
-            "category": "8631ea1348584899a5c98821d261b9d1",
+            "category": "Вази",
             "description": "Матовий білий колір, висота 30 см.",
             "image": "images/product2.png",
             "count": 24
@@ -961,7 +961,7 @@
         "fields": {
             "title": "Тарілка «Елеганс»",
             "price": 540.0,
-            "category": "522b07604f2247a796a8afdcf6f90e45",
+            "category": "Посуд",
             "description": "Керамічна тарілка з ручним розписом.",
             "image": "images/product1.png",
             "count": 11
@@ -972,7 +972,7 @@
         "fields": {
             "title": "Плед «Ніжність»",
             "price": 1750.0,
-            "category": "807a359ad23f4eaaa5e30f57fe7faffd",
+            "category": "Текстиль",
             "description": "В’язаний плед з бавовни, розмір 140x200 см.",
             "image": "images/product5.png",
             "count": 13
@@ -983,7 +983,7 @@
         "fields": {
             "title": "Декоративна свічка «Лаванда»",
             "price": 480.0,
-            "category": "faef45f25e934afdb2247e41dc8dd60d",
+            "category": "Декор",
             "description": "Аромат лаванди, час горіння 30 годин.",
             "image": "images/product19.png",
             "count": 21
@@ -994,7 +994,7 @@
         "fields": {
             "title": "Світильник «Мінімал»",
             "price": 1580.0,
-            "category": "716e1874212443af8ab5a9244ce5dacf",
+            "category": "Світло",
             "description": "Настільний світильник у мінімалістичному стилі.",
             "image": "images/product10.png",
             "count": 18
@@ -1005,7 +1005,7 @@
         "fields": {
             "title": "Кошик «Домашній»",
             "price": 740.0,
-            "category": "18d3a438f0a94791b1e8cb003a497bde",
+            "category": "Аксесуари",
             "description": "Плетений кошик для зберігання речей.",
             "image": "images/product6.png",
             "count": 17
@@ -1016,7 +1016,7 @@
         "fields": {
             "title": "Ваза «Гармонія»",
             "price": 1320.0,
-            "category": "8631ea1348584899a5c98821d261b9d1",
+            "category": "Вази",
             "description": "Матовий чорний колір, висота 32 см.",
             "image": "images/product21.png",
             "count": 25
@@ -1027,7 +1027,7 @@
         "fields": {
             "title": "Чайний сервіз «Класік»",
             "price": 1650.0,
-            "category": "522b07604f2247a796a8afdcf6f90e45",
+            "category": "Посуд",
             "description": "Набір з чайника та 4 чашок, ручна робота.",
             "image": "images/product7.png",
             "count": 13
@@ -1038,7 +1038,7 @@
         "fields": {
             "title": "Скатертина «Свято»",
             "price": 1180.0,
-            "category": "807a359ad23f4eaaa5e30f57fe7faffd",
+            "category": "Текстиль",
             "description": "Лляна скатертина з візерунком, розмір 150x220 см.",
             "image": "images/product8.png",
             "count": 19
@@ -1049,7 +1049,7 @@
         "fields": {
             "title": "Фігурка «Зайчик»",
             "price": 560.0,
-            "category": "faef45f25e934afdb2247e41dc8dd60d",
+            "category": "Декор",
             "description": "Керамічна фігурка зайчика, ручна робота.",
             "image": "images/product4.png",
             "count": 23
@@ -1060,7 +1060,7 @@
         "fields": {
             "title": "Лампа «Ретро»",
             "price": 1680.0,
-            "category": "716e1874212443af8ab5a9244ce5dacf",
+            "category": "Світло",
             "description": "Металева лампа з вінтажним дизайном.",
             "image": "images/product10.png",
             "count": 13
@@ -1071,7 +1071,7 @@
         "fields": {
             "title": "Рамка «Класік»",
             "price": 390.0,
-            "category": "18d3a438f0a94791b1e8cb003a497bde",
+            "category": "Аксесуари",
             "description": "Дерев’яна рамка для фото, формат 13x18 см.",
             "image": "images/product14.png",
             "count": 22
@@ -1082,7 +1082,7 @@
         "fields": {
             "title": "Ваза «Естетика»",
             "price": 1290.0,
-            "category": "8631ea1348584899a5c98821d261b9d1",
+            "category": "Вази",
             "description": "Матовий білий колір, висота 28 см.",
             "image": "images/product2.png",
             "count": 13
@@ -1093,7 +1093,7 @@
         "fields": {
             "title": "Набір тарілок «Комфорт»",
             "price": 1480.0,
-            "category": "522b07604f2247a796a8afdcf6f90e45",
+            "category": "Посуд",
             "description": "Комплект з 6 тарілок, ручна робота.",
             "image": "images/product1.png",
             "count": 10

@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>vite-project</title>
+    <link rel="stylesheet" crossorigin href="/assets/index-B-QsrTnE.css">
+  </head>
+  <body>
+    <body class="bg-background text-foreground min-h-screen flex flex-col">
+      <!-- Header -->
+      <header class="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
+        <div class="container mx-auto px-6 py-4">
+          <div class="flex items-center justify-between">
+            <!-- Logo -->
+            <a href="/" class="font-display text-2xl font-medium text-foreground tracking-wide">Затишок</a>
+    
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex items-center gap-8">
+              <a href="/products"
+                class="font-body text-sm text-muted-foreground hover:text-black transition-colors">Каталог</a>
+              <a href="{% url 'about' %}"
+                class="font-body text-sm text-muted-foreground hover:text-black transition-colors">Про нас</a>
+              <a href="/contacts"
+                class="font-body text-sm text-muted-foreground hover:text-black transition-colors">Контакти</a>
+            </nav>
+    
+            <!-- Actions -->
+            <div class="flex items-center gap-2">
+    
+              <!-- User -->
+              <a href="/auth" class="p-2 hover:bg-secondary rounded-full transition-colors">
+                <span class="material-icons">person</span>
+              </a>
+    
+              <!-- Cart -->
+              <a href="/cart" class="relative p-2 hover:bg-secondary rounded-full transition-colors">
+                <span class="material-icons">local_mall</span>
+                <span
+                  class="absolute -top-1 -right-1 w-5 h-5 bg-amber-600 text-white text-xs rounded-full flex items-center justify-center">
+                  {{ cart_item_count }}
+                </span>
+              </a>
+    
+              <!-- Mobile Menu -->
+              <button class="md:hidden p-2 hover:bg-gray-100 rounded-full transition-colors">
+                <span class="material-icons">menu</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
+    
+      <div class="container mx-auto px-6 py-24">
+        <h1 class="font-display text-4xl md:text-4xl font-medium text-foreground mb-8 text-center">
+          Оформлення замовлення
+        </h1>
+      
+        <form method="post" class="max-w-5xl mx-auto">
+          {% csrf_token %}
+          <div class="grid lg:grid-cols-3 gap-8">
+            <!-- Contact Info -->
+            <div class="lg:col-span-2 space-y-8">
+              <div class="bg-card p-6 border border-border rounded-lg">
+                <h2 class="font-display text-xl font-medium text-foreground mb-6">Контактні дані</h2>
+                <div class="grid sm:grid-cols-2 gap-4">
+                  <div class="space-y-2">
+                    <label for="first_name" class="font-body">Ім'я</label>
+                    <input type="text" name="first_name" id="first_name" class="font-body w-full border rounded p-2" required>
+                  </div>
+                  <div class="space-y-2">
+                    <label for="last_name" class="font-body">Прізвище</label>
+                    <input type="text" name="last_name" id="last_name" class="font-body w-full border rounded p-2" required>
+                  </div>
+                  <div class="space-y-2">
+                    <label for="phone" class="font-body">Телефон</label>
+                    <input type="text" name="phone" id="phone" class="font-body w-full border rounded p-2" placeholder="+380"
+                      required>
+                  </div>
+                  <div class="space-y-2">
+                    <label for="email" class="font-body">Email</label>
+                    <input type="email" name="email" id="email" class="font-body w-full border rounded p-2" required>
+                  </div>
+                </div>
+              </div>
+      
+              <!-- Delivery -->
+              <div class="bg-card p-6 border border-border rounded-lg">
+                <h2 class="font-display text-xl font-medium text-foreground mb-6">Доставка</h2>
+                <div class="space-y-3 mb-6">
+                  <label class="flex items-center space-x-3 p-3 border border-border rounded-lg cursor-pointer">
+                    <input type="radio" name="delivery_method" value="nova-poshta" required>
+                    <span class="font-body flex-1">Нова Пошта (відділення)</span>
+                  </label>
+                  <label class="flex items-center space-x-3 p-3 border border-border rounded-lg cursor-pointer">
+                    <input type="radio" name="delivery_method" value="courier">
+                    <span class="font-body flex-1">Кур'єрська доставка</span>
+                  </label>
+                </div>
+      
+                <div class="grid sm:grid-cols-2 gap-4">
+                  <div class="space-y-2">
+                    <label for="city" class="font-body">Місто</label>
+                    <input type="text" name="city" id="city" class="font-body w-full border rounded p-2" required>
+                  </div>
+                  <div class="space-y-2">
+                    <label for="address" class="font-body">Адреса / Відділення</label>
+                    <input type="text" name="address" id="address" class="font-body w-full border rounded p-2" required>
+                  </div>
+                </div>
+              </div>
+      
+              <!-- Payment -->
+              <div class="bg-card p-6 border border-border rounded-lg">
+                <h2 class="font-display text-xl font-medium text-foreground mb-6">Оплата</h2>
+                <div class="space-y-3">
+                  <label class="flex items-center space-x-3 p-3 border border-border rounded-lg cursor-pointer">
+                    <input type="radio" name="payment_method" value="card" required>
+                    <span class="font-body flex-1">Оплата карткою онлайн</span>
+                  </label>
+                  <label class="flex items-center space-x-3 p-3 border border-border rounded-lg cursor-pointer">
+                    <input type="radio" name="payment_method" value="cash">
+                    <span class="font-body flex-1">Накладений платіж</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+      
+            <!-- Order Summary -->
+            <div class="lg:col-span-1">
+              <div class="bg-card p-6 border border-border rounded-lg sticky top-24">
+                <h2 class="font-display text-xl font-medium text-foreground mb-4">Ваше замовлення</h2>
+      
+                <div class="space-y-3 mb-6">
+                  {% for item in cart %}
+                  <div class="flex gap-3">
+                    <img src="{{ item.product.image }}" alt="{{ item.product.title }}" class="w-12 h-12 object-cover rounded"
+                      style="width: 3rem; height: 3rem;" />
+                    <div class="flex-1 min-w-0">
+                      <p class="font-body text-sm text-foreground truncate">{{ item.product.title }}
+                      </p>
+                      <p class="font-body text-xs text-muted-foreground">
+                        {{ item.quantity }} × {{ item.product.price }} ₴
+                      </p>
+                    </div>
+                  </div>
+                  {% endfor %}
+                </div>
+      
+                <div class="border-t border-border pt-4 space-y-2">
+                  <div class="flex justify-between font-body text-sm">
+                    <span class="text-muted-foreground">Товари</span>
+                    <span>{{ cart_total }} ₴</span>
+                  </div>
+                  <div class="flex justify-between font-body text-sm">
+                    <span class="text-muted-foreground">Доставка</span>
+                    <span>Безкоштовно</span>
+                  </div>
+                  <div class="border-t border-border pt-2">
+                    <div class="flex justify-between font-body font-medium text-lg">
+                      <span>Разом</span>
+                      <span class="text-primary">{{ cart_total }} ₴</span>
+                    </div>
+                  </div>
+                </div>
+      
+                <button type="submit" class="w-full mt-6 font-body bg-primary text-white py-2 rounded">
+                  Підтвердити замовлення
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      </main>
+    
+      <!-- Footer -->
+      <footer class="bg-gray-100 py-16">
+        <div class="container mx-auto px-6">
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+    
+            <!-- Brand -->
+            <div class="md:col-span-2">
+              <a href="/" class="text-2xl font-medium tracking-wide">Затишок</a>
+              <p class="text-sm text-gray-600 mt-4 max-w-sm">
+                Створюємо простір, де кожна деталь має значення. Унікальні предмети декору для вашого дому.
+              </p>
+    
+              <!-- Social Links -->
+              <div class="flex gap-4 mt-6">
+                <a href="#" class="p-2 rounded-full bg-white hover:bg-blue-600 hover:text-white transition-colors">
+                  <!-- Instagram SVG -->
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                      d="M7 2C4.243 2 2 4.243 2 7v10c0 2.757 2.243 5 5 5h10c2.757 0 5-2.243 5-5V7c0-2.757-2.243-5-5-5H7zm10 2c1.654 0 3 1.346 3 3v10c0 1.654-1.346 3-3 3H7c-1.654 0-3-1.346-3-3V7c0-1.654 1.346-3 3-3h10zm-5 3a5 5 0 100 10 5 5 0 000-10zm0 2a3 3 0 110 6 3 3 0 010-6zm4.5-2a1.5 1.5 0 11-3.001-.001A1.5 1.5 0 0116.5 5z" />
+                  </svg>
+                </a>
+                <a href="#" class="p-2 rounded-full bg-white hover:bg-blue-600 hover:text-white transition-colors">
+                  <!-- Facebook SVG -->
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                      d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.988H7.898v-2.89h2.54V9.797c0-2.507 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562v1.875h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" />
+                  </svg>
+                </a>
+                <a href="#" class="p-2 rounded-full bg-white hover:bg-blue-600 hover:text-white transition-colors">
+                  <!-- Mail SVG -->
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                      d="M20 4H4c-1.103 0-2 .897-2 2v12c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2V6c0-1.103-.897-2-2-2zm0 2v.511l-8 5.333-8-5.333V6h16zM4 18V8.489l8 5.333 8-5.333V18H4z" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+    
+            <!-- Links -->
+            <div>
+              <h4 class="text-lg font-medium mb-4">Магазин</h4>
+              <ul class="space-y-3">
+                <li><a href="#" class="text-sm text-gray-600 hover:text-black transition-colors">Каталог</a></li>
+                <li><a href="#" class="text-sm text-gray-600 hover:text-black transition-colors">Новинки</a></li>
+                <li><a href="#" class="text-sm text-gray-600 hover:text-black transition-colors">Розпродаж</a></li>
+              </ul>
+            </div>
+    
+            <div>
+              <h4 class="text-lg font-medium mb-4">Інформація</h4>
+              <ul class="space-y-3">
+                <li><a href="#" class="text-sm text-gray-600 hover:text-black transition-colors">Доставка</a></li>
+                <li><a href="#" class="text-sm text-gray-600 hover:text-black transition-colors">Оплата</a></li>
+                <li><a href="#" class="text-sm text-gray-600 hover:text-black transition-colors">Контакти</a></li>
+              </ul>
+            </div>
+          </div>
+    
+          <!-- Bottom -->
+          <div class="border-t border-gray-300 mt-12 pt-8">
+            <p class="text-xs text-gray-500 text-center">
+              © 2026 Затишок. Контент згенеровано ШІ.
+            </p>
+          </div>
+        </div>
+      </footer>
+  </body>
+</html>
