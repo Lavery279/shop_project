@@ -54,14 +54,20 @@
 
         <!-- Сортування -->
         <form method="get">
+            {% if request.GET.search %}
+            <input type="hidden" name="search" value="{{ request.GET.search }}">
+            {% endif %}
+            {% if request.GET.category %}
+            <input type="hidden" name="category" value="{{ request.GET.category }}">
+            {% endif %}
+        
             <select name="sort" class="w-[180px] font-body border px-3 py-2 rounded" onchange="this.form.submit()">
                 <option value="">За замовчуванням</option>
-                <option value="price_asc" {% if request.GET.sort == 'price_asc' %}selected{% endif %}>Ціна: від низької
-                </option>
-                <option value="price_desc" {% if request.GET.sort == 'price_desc' %}selected{% endif %}>Ціна: від високої
-                </option>
+                <option value="price_asc" {% if request.GET.sort == 'price_asc' %}selected{% endif %}>Ціна: від низької</option>
+                <option value="price_desc" {% if request.GET.sort == 'price_desc' %}selected{% endif %}>Ціна: від високої</option>
             </select>
         </form>
+
     </div>
 
     

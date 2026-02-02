@@ -25,7 +25,7 @@
             <p class="font-body text-lg text-muted-foreground mb-8 animate-fade-in" style="animation-delay:0.2s">
                 Відкрийте для себе унікальну колекцію предметів декору, що створюють атмосферу затишку у вашому домі.
             </p>
-            <a href="/products"
+            <a href="{% url 'catalog' %}"
                 class="inline-flex items-center px-6 py-3 bg-amber-800 shadow-md rounded-md font-medium text-white group transition-colors"
                 style="animation-delay:0.3s">
                 Переглянути каталог
@@ -62,7 +62,7 @@
 
         <!-- View All Link -->
         <div class="text-center mt-12">
-            <a href="/products"
+            <a href="{% url 'catalog' %}"
                 class="inline-flex items-center text-sm text-amber-700 hover:text-amber-600 transition-colors group">
                 Дивитись усі товари
                 <svg class="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24"
